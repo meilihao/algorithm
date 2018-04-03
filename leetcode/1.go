@@ -65,7 +65,7 @@ func twoSum22(nums []int, target int) []int {
 	m := make(map[int]int)
 
 	for i := 0; i < n; i++ { // 使用n,是因为数据未全部在m中
-		if j, ok := m[target-nums[i]]; ok { //
+		if j, ok := m[target-nums[i]]; ok { // j是之前存入m的i,因此 j < i
 			a = append(a, j, i)
 
 			return a
