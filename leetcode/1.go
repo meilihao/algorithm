@@ -15,7 +15,7 @@ func main() {
 	fmt.Println(twoSum(nums, target))
 	fmt.Println(twoSum21(nums, target))
 	fmt.Println(twoSum22(nums, target))
-	fmt.Println(twoSum23(nums, target))
+	fmt.Println(twoSum3(nums, target))
 }
 
 // 尝试所有组合, 类似与冒泡排序的过程
@@ -92,7 +92,7 @@ func twoSum221(nums []int, target int) []int {
 	return nil
 }
 
-func twoSum23(nums []int, target int) []int {
+func twoSum222(nums []int, target int) []int {
 	m := make(map[int]int, len(nums))
 
 	for i, v := range nums {
@@ -107,6 +107,7 @@ func twoSum23(nums []int, target int) []int {
 }
 
 // 使用夹逼方法:原理是因为数组是有序的，那么假设当前结果比target大，那么左端序号右移只会使两个数的和更大，反之亦然. 所以每次只会有一个选择，从而实现线性就可以求出结果.
+// 返回结果和原下标不同(因为排序过)
 // O(nlogn+n)=O(nlogn)，空间复杂度取决于排序算法
 func twoSum3(nums []int, target int) []int {
 	sort.Ints(nums)
