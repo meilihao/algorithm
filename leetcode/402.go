@@ -6,7 +6,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(removeKdigits("12340", 2))
+	fmt.Println(removeKdigits("1001", 3))
 }
 
 // O(len(num)+k)
@@ -35,6 +35,7 @@ func removeKdigits(num string, k int) string {
 		top -= k
 	}
 
+	fmt.Println(k,stack)
 	stack = stack[:top]
 
 	i, n := 0, len(stack)
@@ -47,4 +48,39 @@ func removeKdigits(num string, k int) string {
 	}
 
 	return string(stack[i:])
+}
+
+// best
+func removeKdigits2(num string, k int) string {
+	n := len(num)
+	if n <= k {
+		return "0"
+	}
+
+	stack := make([]byte, n)
+	top := 0
+
+	for i := range num {
+		for top > 0 && stack[top-1] > num[i] && k > 0 {
+			top--
+			k--
+		}
+
+		if num[i] != '0' || top > 0 { // 禁止栈底是'0', 因为压入'0'则需另外步骤来处理前导零
+			stack[top] = num[i]
+			top++
+		}
+	}
+
+	fmt.Println(top, k)
+	for top > 0 && k > 0 {
+		top--
+		k--
+	}
+
+	if top == 0 {
+		return "0"
+	}
+
+	return string(stack[:top])
 }
