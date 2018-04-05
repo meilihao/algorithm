@@ -143,9 +143,7 @@ func lengthOfLongestSubstring3(s string) int {
 	m := make(map[rune]int)
 
 	for i, v := range s {
-		j1, ok1 := m[v]
-		fmt.Println(j1, ok1, start, j1)
-		// start <= j : ???                      // example: "aab" for start == j
+		// start <= j -> start<j:本次出现的起点比上一次靠后, start==j处理连续且重复的字符     // example: "aab" 或 "aaaa" for start == j
 		if j, ok := m[v]; ok && start <= j {
 			start = j + 1 // 从上一次出现重复字符的下一个位置开始重新计算
 		} else {
