@@ -26,42 +26,42 @@ func main() {
 func Test() {
 	s := "abcabcbb"
 
-	n := lengthOfLongestSubstring3(s)
+	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 3)
 }
 
 func Test2() {
 	s := "bbbbb"
 
-	n := lengthOfLongestSubstring3(s)
+	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 1)
 }
 
 func Test3() {
 	s := "pwwkew"
 
-	n := lengthOfLongestSubstring3(s)
+	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 3)
 }
 
 func Test4() {
 	s := "a"
 
-	n := lengthOfLongestSubstring3(s)
+	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 1)
 }
 
 func Test5() {
 	s := "aabab"
 
-	n := lengthOfLongestSubstring3(s)
+	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 2)
 }
 
 func Test6() {
 	s := "abba"
 
-	n := lengthOfLongestSubstring3(s)
+	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 2)
 }
 
@@ -146,6 +146,30 @@ func lengthOfLongestSubstring3(s string) int {
 		// start <= j -> start<j:本次出现的起点比上一次靠后, start==j处理连续且重复的字符     // example: "aab" 或 "aaaa" for start == j
 		if j, ok := m[v]; ok && start <= j {
 			start = j + 1 // 从上一次出现重复字符的下一个位置开始重新计算
+		} else {
+			if i-start+1 > max { // for 求max
+				max = i - start + 1
+			}
+		}
+
+		m[v] = i
+	}
+
+	return max
+}
+
+// best
+func lengthOfLongestSubstring4(s string) int {
+	max, start := 0, 0 // start为0是指从s[0]开始查找
+	m := [128]int{}
+	for i := range m {
+		m[i] = -1
+	}
+
+	for i, v := range s {
+		// start <= j -> start<j:本次出现的起点比上一次靠后, start==j处理连续且重复的字符     // example: "aab" 或 "aaaa" for start == j
+		if m[v] > -1 && start <= m[v] {
+			start = m[v] + 1 // 从上一次出现重复字符的下一个位置开始重新计算
 		} else {
 			if i-start+1 > max { // for 求max
 				max = i - start + 1
