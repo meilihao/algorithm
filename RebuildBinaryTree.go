@@ -44,6 +44,12 @@ func main() {
 	fmt.Println("----")
 	MidOutput(root)
 
+	// 右斜树
+	preOrder = []int{1, 2, 3, 4, 5}
+	midOrder = []int{1, 2, 3, 4, 5}
+
+	root = rebuildBinaryTree(preOrder, midOrder)
+
 	buf := &bytes.Buffer{}
 	memviz.Map(buf, root)
 	ioutil.WriteFile("a.dot", buf.Bytes(), 0600)
@@ -74,13 +80,13 @@ func rebuildBinaryTree(pre, mid []int) *node {
 		panic("invalid put")
 	}
 
-	if ln>0 { // 左子树有内容
+	if ln > 0 { // 左子树有内容
 		root.left = rebuildBinaryTree(pre[1:1+ln], mid[:ln])
 	}
 
 	if ln < len(mid)-1 { // 右子树有内容
 		root.right = rebuildBinaryTree(pre[ln+1:], mid[ln+1:])
-	} 
+	}
 
 	return root
 }
