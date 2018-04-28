@@ -74,9 +74,13 @@ func PrintList(head *Node) {
 }
 
 func ReverseList(head *Node) *Node {
-	if head == nil || head.Next == nil {
+	if head == nil {
 		return nil
 	}
+
+	// if head.Next==nil{
+	// 	return head
+	// }
 
 	pre, cur := head, head.Next
 	var tmp *Node
