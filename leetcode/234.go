@@ -43,7 +43,7 @@ func isPalindrome(head *ListNode) bool {
 	slow := head
 	fast := head
 
-	var pre, tmp *ListNode
+	var pre, tmp *ListNode // 用于翻转链表
 
 	for fast != nil && fast.Next != nil { // 确保fast能跳两格
 		fast = fast.Next.Next
@@ -51,7 +51,7 @@ func isPalindrome(head *ListNode) bool {
 		tmp = slow.Next
 
 		slow.Next = pre //翻转链表方向
-		pre = slow // pre已翻转完成
+		pre = slow      // pre已翻转完成
 
 		slow = tmp
 	}
