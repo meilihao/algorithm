@@ -172,7 +172,7 @@ func quickSort(array []int, left, right int) {
 	}
 
 	tmp := array[left] //基点,通常是前一个/最后一个元素
-	i, j := left, right//i为什么不能是left+1(即基点也要参与比较), test case(5,6,5):不参与时不能保证array[left+1]<=tmp,即互换后不能保证左边小于基点
+	i, j := left, right//i为什么不能是left+1(即基点也要参与比较), test case(5,6,5):不参与时不能保证array[left+1]<=tmp,即互换后不能保证左边不大于基点
 
 	for i != j { // 两头向中间靠拢
 		for array[j] >= tmp && i < j { // 从基点对应的另一端开始
