@@ -42,7 +42,7 @@ func InsertSort(a []int) {
 	var tmp, j int // 保存选中要进行插入的数据
 	for i := 1; i < n; i++ {
 		tmp = a[i]
-		j = i - 1
+		j = i - 1//有序序列:0~i-1
 
 		// 查找要插入的位置
 		for ; j >= 0; j-- {
@@ -172,7 +172,7 @@ func quickSort(array []int, left, right int) {
 	}
 
 	tmp := array[left] //基点,通常是前一个/最后一个元素
-	i, j := left, right
+	i, j := left, right//i为什么不能是left+1(即基点也要参与比较), test case(5,6,5):不参与时不能保证array[left+1]<=tmp,即互换后不能保证左边小于基点
 
 	for i != j { // 两头向中间靠拢
 		for array[j] >= tmp && i < j { // 从基点对应的另一端开始
@@ -198,19 +198,20 @@ func quickSort(array []int, left, right int) {
 	quickSort(array, i+1, right)
 }
 
+// 推荐
 func quickSort2(arr []int, start, end int) {
 	if start >= end {
 		return
 	}
 
 	// 选取第一位当对比数字
-	pivot := arr[start]
+	pivot := arr[end]
 
-	var i = start
-	for j := start; j < end; j++ {
+	var i = start //查找a[i]>=pivot
+	for j := start; j < end; j++ {//j 查找arr[j] < pivot的数
 		if arr[j] < pivot {
-			if !(i == j) {
-				// 交换位置
+			if i != j {//说明此时arr[i]>=pivot
+				// 交换位置, 变成 arr[i]<pivot<= arr[j] 之后i进1:保证i的左边都小于pivot
 				arr[i], arr[j] = arr[j], arr[i]
 			}
 			i++
