@@ -42,7 +42,7 @@ func InsertSort(a []int) {
 	var tmp, j int // 保存选中要进行插入的数据
 	for i := 1; i < n; i++ {
 		tmp = a[i]
-		j = i - 1//有序序列:0~i-1
+		j = i - 1 //有序序列:0~i-1
 
 		// 查找要插入的位置
 		for ; j >= 0; j-- {
@@ -171,8 +171,8 @@ func quickSort(array []int, left, right int) {
 		return
 	}
 
-	tmp := array[left] //基点,通常是前一个/最后一个元素
-	i, j := left, right//i为什么不能是left+1(即基点也要参与比较), test case(5,6,5):不参与时不能保证array[left+1]<=tmp,即互换后不能保证左边不大于基点
+	tmp := array[left]  //基点,通常是前一个/最后一个元素
+	i, j := left, right //i为什么不能是left+1(即基点也要参与比较), test case(5,6,5):不参与时不能保证array[left+1]<=tmp,即互换后不能保证左边不大于基点
 
 	for i != j { // 两头向中间靠拢
 		for array[j] >= tmp && i < j { // 从基点对应的另一端开始
@@ -207,10 +207,14 @@ func quickSort2(arr []int, start, end int) {
 	// 选取第一位当对比数字
 	pivot := arr[end]
 
-	var i = start //查找a[i]>=pivot
-	for j := start; j < end; j++ {//j 查找arr[j] < pivot的数
+	// 有点类似选择排序. 我们通过游标 i 把 A[p…r-1] 分成两部分. A[p…i-1] 的元素都是小于pivot 的，
+	// 我们暂且叫它“已处理区间”，A[i…r-1] 是“未处理区间”.
+	// 我们每次都从未处理的区间 A[i…r-1] 中取一个元素 A[j]， 与 pivot 对比，
+	// 如果小于 pivot， 则将其加入到已处理区间的尾部， 也就是 A[i]的位置
+	var i = start                  //查找a[i]>=pivot
+	for j := start; j < end; j++ { //j 查找arr[j] < pivot的数
 		if arr[j] < pivot {
-			if i != j {//说明此时arr[i]>=pivot
+			if i != j { //说明此时arr[i]>=pivot
 				// 交换位置, 变成 arr[i]<pivot<= arr[j] 之后i进1:保证i的左边都小于pivot
 				arr[i], arr[j] = arr[j], arr[i]
 			}
