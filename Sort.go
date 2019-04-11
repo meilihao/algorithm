@@ -130,7 +130,7 @@ func merge(arr []int, start, mid, end int) {
 	copy(arr[start:end+1], tmpArr)
 }
 
-// SortAges
+// SortAges, 计数排序
 // age [0,149]
 func SortAges(a []int) []int {
 	maxAge := 150
@@ -233,6 +233,7 @@ func QuickSort(array []int) {
 	quickSort(array, 0, len(array)-1)
 }
 
+// 二分查找(BinarySearch) : 针对**有序数据集合**的查找算法
 func BinarySearch(array []int, target int) int {
 	left, right := 0, len(array)-1
 	var mid int
