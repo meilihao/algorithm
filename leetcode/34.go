@@ -62,3 +62,27 @@ func lastTarget(nums []int, low, up, target int) int {
 
 	return -1
 }
+
+// 类似问题:
+// 如何快速定位出一个 IP地址的归属地 -> 在有序数组中， 查找最后一个小于等于某个给定值的元素
+func searchIP(int []a, int n, int value) int {
+	low := 0
+	high := n - 1
+	var mid int
+
+	for low <= high {
+		mid = (low + high) >> 1
+
+		if a[mid] > value {
+			high = mid - 1
+		} else {
+			if mid == n-1 || a[mid+1] > value {
+				return mid
+			} else {
+				low = mid + 1
+			}
+		}
+	}
+
+	return -1
+}
