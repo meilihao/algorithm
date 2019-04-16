@@ -27,7 +27,7 @@ func (h *Heap) Insert(data int) {
 	h.a[h.count] = data
 
 	i := h.count
-	for i/2 > 0 && h.a[i] > h.a[i/2] {
+	for i/2 > 0 && h.a[i] > h.a[i/2] {// 子节点打印父节点
 		h.a[i], h.a[i/2] = h.a[i/2], h.a[i]
 
 		i /= 2
