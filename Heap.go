@@ -105,7 +105,7 @@ func heapify(a []int, n, i int) {
 
 		a[i], a[maxPos] = a[maxPos], a[i]
 
-		fmt.Println("--", i, maxPos, a)
+		// fmt.Println("--", i, maxPos, a)
 
 		i = maxPos
 	}
