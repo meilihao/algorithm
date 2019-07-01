@@ -56,14 +56,14 @@ func reverseList(head *ListNode) *ListNode {
 	}
 
 	cur := head
-	var pre, tmp *ListNode
+	var pre, next *ListNode
 	for cur != nil {
-		tmp = cur.Next
+		next = cur.Next
 
 		cur.Next = pre //翻转链表方向
 		pre = cur      // pre已翻转完成
 
-		cur = tmp
+		cur = next
 	}
 
 	return pre
