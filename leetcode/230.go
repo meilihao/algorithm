@@ -29,3 +29,5 @@ func countLeaf(root *TreeNode) int {
 	}
 	return countLeaf(root.Left) + countLeaf(root.Right) + 1
 }
+
+// todo stack
