@@ -16,7 +16,7 @@ func main() {
 	breadthFirstSearch(root)
 }
 
-// DFS
+// DFS(Deep First Search）深度优先搜索
 func depthFirstSearch(root *node) {
 	st := newStack(10)
 	var tmp *node
@@ -36,7 +36,7 @@ func depthFirstSearch(root *node) {
 	}
 }
 
-// BFS
+// BFS(Breath First Search）广度优先搜索
 func breadthFirstSearch(root *node) {
 	q := newQueue(10)
 	var tmp *node
