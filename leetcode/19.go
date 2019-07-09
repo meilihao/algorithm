@@ -8,10 +8,12 @@ type ListNode struct {
 }
 
 func main() {
-	s := "12"
+	s := "123"
 	head := BuildList(s)
+	printList(head)
+	fmt.Println("---")
 
-	removedHead := removeNthFromEnd(head, 2)
+	removedHead := removeNthFromEnd2(head, 3)
 	printList(removedHead)
 }
 
@@ -76,4 +78,42 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	second.Next = second.Next.Next
 
 	return head
+}
+
+// best
+// 加哨兵节点
+// 倒数第N个节点 -> 正数第(L-N+1)个节点-> 要删除链表的节点就必须知道该节点的前一个节点: L-N
+// 假设第(L-N)个节点有指针second,那么此时first应该在nil上, 两者相差N+1步. 因此first应先走N+1步, 之后再同步走.
+// 因为是从head开始走, 只需要走N步, 又因为加了哨兵节点, 所以还是要走N+1步.
+func removeNthFromEnd2(head *ListNode, n int) *ListNode {
+	if head == nil || n <= 0 {
+		return head
+	}
+
+	dummy := &ListNode{ // 哨兵节点
+		Next: head,
+	}
+
+	first := dummy
+
+	i := n + 1
+	for ; i > 0 && first != nil; i-- {
+		first = first.Next
+	}
+
+	// fmt.Println(first, i)
+
+	if i > 0 { // n>L
+		return dummy.Next
+	}
+
+	second := dummy
+	// fmt.Println(first, second)
+	for first != nil { // 到达最后一个节点
+		first = first.Next
+		second = second.Next
+	}
+	second.Next = second.Next.Next
+
+	return dummy.Next
 }
