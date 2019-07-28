@@ -23,15 +23,15 @@ func Constructor(capacity int) LRUCache {
 		panic("invalid capacity")
 	}
 
-	l:= LRUCache{
+	l := LRUCache{
 		M:    make(map[int]*ListNode, capacity),
 		C:    capacity,
 		Head: &ListNode{},
 		Last: &ListNode{},
 	}
 
-	l.Head.Next=l.Last
-	l.Last.Pre=l.Head
+	l.Head.Next = l.Last
+	l.Last.Pre = l.Head
 
 	return l
 }
@@ -77,11 +77,11 @@ func (this *LRUCache) Put(key int, value int) {
 
 	var n *ListNode
 	if len(this.M) == this.C { // is full
-		n = this.Last.Pre
+		n = this.Last.Pre // 将结尾哨兵的前一个元素即最后一个元素替换成新value
 		delete(this.M, n.Key)
 
-		n.Key=key
-		n.Val=value
+		n.Key = key
+		n.Val = value
 
 		this.Remove(n)
 	} else {
@@ -102,7 +102,7 @@ func main() {
 	l.Put(2, 2)
 	fmt.Println(l.Get(1))
 	l.Put(3, 3)
-	fmt.Println("---",l)
+	fmt.Println("---", l)
 	fmt.Println(l.Get(2))
 	l.Put(4, 4)
 	fmt.Println(l.Get(1))
