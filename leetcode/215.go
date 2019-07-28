@@ -72,7 +72,7 @@ func quickSort2(arr []int, start, end, k int) int {
 
 	var i = start // 查找a[i]<=pivot
 	for j := start; j < end; j++ {
-		if arr[j] > pivot {
+		if arr[j] > pivot { // arr[j] > pivot => 合适时交换i, j
 			if i != j {
 				arr[i], arr[j] = arr[j], arr[i]
 			}
