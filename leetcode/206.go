@@ -61,8 +61,8 @@ func reverseList(head *ListNode) *ListNode {
 		next = cur.Next
 
 		cur.Next = pre //翻转链表方向
-		pre = cur      // pre已翻转完成
 
+		pre = cur
 		cur = next
 	}
 
