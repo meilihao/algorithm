@@ -51,8 +51,8 @@ func isPalindrome(head *ListNode) bool {
 		tmp = slow.Next
 
 		slow.Next = pre //翻转链表方向
-		pre = slow      // pre已翻转完成
 
+		pre = slow
 		slow = tmp
 	}
 
