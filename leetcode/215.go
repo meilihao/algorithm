@@ -30,7 +30,7 @@ func quickSort(arr []int, start, end, k int) int {
 		return arr[end]
 	}
 
-	// 选取第一位当对比数字
+	// 选取最后一位当对比数字
 	pivot := arr[end]
 
 	// 有点类似选择排序. 我们通过游标 i 把 A[p…r-1] 分成两部分. A[p…i-1] 的元素都是小于pivot 的，
@@ -67,7 +67,7 @@ func quickSort2(arr []int, start, end, k int) int {
 		return arr[end]
 	}
 
-	// 选取第一位当对比数字
+	// 选取最后一位当对比数字, 即遍历方向的最后一位
 	pivot := arr[end]
 
 	var i = start // 查找a[i]<=pivot
