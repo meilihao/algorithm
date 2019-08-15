@@ -19,7 +19,7 @@ func kthSmallest(root *TreeNode, k int) int {
 	} else if left > k-1 {
 		return kthSmallest(root.Left, k)
 	} else {
-		return kthSmallest(root.Right, k-left-1) // k-(left+1)
+		return kthSmallest(root.Right, k-left-1) // k-(left+1)即仅检查右子树
 	}
 }
 
