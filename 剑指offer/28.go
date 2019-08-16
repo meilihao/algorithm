@@ -1,5 +1,6 @@
 // 输入一个字符串，打印出该字符串中字符的所有排列
 // 例：输入字符串abc，则输出由字符a、b、c 所能排列出来的所有字符串abc、acb、bac、bca、cab 和cba
+// [《剑指offer》题解(二十)](https://zhuanlan.zhihu.com/p/34114529)
 package main
 
 import (
