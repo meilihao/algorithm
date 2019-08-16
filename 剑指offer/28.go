@@ -4,14 +4,13 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	//"sort"
 )
 
 func main() {
-	s := "ab"
+	s := "abca"
 
-	ss := strings.Split(s, "")
+	ss := []byte(s)
 
 	if n := len(ss); n <= 1 {
 		fmt.Println(s)
@@ -36,13 +35,13 @@ func main() {
 	}
 }
 
-func printAll(ss []string, start, end int, p *[]string) {
+func printAll(ss []byte, start, end int, p *[]string) {
 	if end <= 0 {
 		return
 	}
 
 	if start == end {
-		*p = append(*p, strings.Join(ss, ""))
+		*p = append(*p, string(ss))
 	} else {
 		for i := start; i <= end; i++ {
 			ss[i], ss[start] = ss[start], ss[i]
