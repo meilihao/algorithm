@@ -76,7 +76,7 @@ func quickSort2(arr []int, start, end, k int) int {
 			if i != j {
 				arr[i], arr[j] = arr[j], arr[i]
 			}
-			i++
+			i++ // 不符合a[i]<=pivot的条件, 因此尝试下一位
 		}
 	}
 
