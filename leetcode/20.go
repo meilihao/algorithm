@@ -9,7 +9,7 @@ func main() {
 	fmt.Println(isValid(s))
 }
 
-// 使用stack
+// 使用stack : 时间O(n) + 空间O(n)
 func isValid(s string) bool {
 	//空串认为是合法的
 	if s == "" {
