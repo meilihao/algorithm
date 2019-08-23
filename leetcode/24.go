@@ -50,7 +50,7 @@ func printList(head *ListNode) {
 	}
 }
 
-// 需要三个指针: 相邻元素 + 相邻元素前面的一个元素
+// 需要三个指针: 相邻元素 + 相邻元素前面的一个元素(用于指向后两个相邻元素)
 // best
 func swapPairs(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
