@@ -11,7 +11,7 @@ func main() {
 	s := "abc"
 	head := BuildList(s)
 
-	reversedHead := reverseList(head)
+	reversedHead := reverseList2(head)
 	printList(reversedHead)
 }
 
@@ -64,6 +64,21 @@ func reverseList(head *ListNode) *ListNode {
 
 		pre = cur
 		cur = next
+	}
+
+	return pre
+}
+
+func reverseList2(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	cur := head
+	var pre *ListNode
+
+	for cur != nil {
+		cur.Next, pre, cur = pre, cur, cur.Next
 	}
 
 	return pre

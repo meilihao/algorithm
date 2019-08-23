@@ -1,4 +1,5 @@
 // 230. 二叉搜索树中第K小的元素
+// 保证输入的 K 满足 1<=K<=(节点数目）
 package main
 
 type TreeNode struct {
