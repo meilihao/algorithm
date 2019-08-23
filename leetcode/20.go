@@ -17,8 +17,7 @@ func isValid(s string) bool {
 	}
 
 	//如果s长度为奇数是不可能合法的
-	n := len(s)
-	if n%2 == 1 {
+	if len(s)%2 == 1 {
 		return false
 	}
 
@@ -30,7 +29,7 @@ func isValid(s string) bool {
 			// 入栈
 			stack = append(stack, c)
 		} else if len(stack) > 0 && brackets[c] == stack[len(stack)-1] { // 栈中有数据，且此元素与栈尾元素相同
-			stack = stack[:len(stack)-1]
+			stack = stack[:len(stack)-1] // pop
 		} else {
 			return false
 		}
