@@ -32,5 +32,10 @@
 322. ???
 384. 打乱数组
 402. 移掉K位数字
+703. 数据流中的第K大元素
 876. 链表的中间结点
 895. 最大频率栈
+
+## 参考
+- [MisterBooo/LeetCodeAnimation](https://github.com/MisterBooo/LeetCodeAnimation/tree/master/notes)
+- [LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go/tree/master/Algorithms)
