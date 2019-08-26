@@ -17,6 +17,7 @@ func main() {
 }
 
 // DFS(Deep First Search）深度优先搜索
+// 这里是非递归写法, 也可使用递归实现(常用,因为不用自行维护一个stack)
 func depthFirstSearch(root *node) {
 	st := newStack(10)
 	var tmp *node
@@ -37,6 +38,7 @@ func depthFirstSearch(root *node) {
 }
 
 // BFS(Breath First Search）广度优先搜索
+// bfs没有递归写法
 func breadthFirstSearch(root *node) {
 	q := newQueue(10)
 	var tmp *node
