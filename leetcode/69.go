@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	n := 5 // 1,4,8,9
-	fmt.Println(mySqrt2(n))
+	fmt.Println(mySqrt(n))
 }
 
 // 使用浮点
@@ -16,7 +16,7 @@ func mySqrt(x int) int {
 	var low, up, target float64 = 0, float64(x), float64(x)
 	var mid, tmp float64
 
-	for (up-low) >= 1e-6 || (low-up) >= 1e-6 {
+	for (up - low) > 1e-6 {
 		mid = (low + up) / 2
 		tmp = mid * mid
 
