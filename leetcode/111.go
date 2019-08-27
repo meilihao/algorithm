@@ -12,7 +12,7 @@ func minDepth(root *TreeNode) int {
 	switch {
 	case root == nil:
 		return 0
-	case root.Left == nil:
+	case root.Left == nil: // 因为左分支没了, 最小深度取决于右分支
 		return 1 + minDepth(root.Right)
 	case root.Right == nil:
 		return 1 + minDepth(root.Left)

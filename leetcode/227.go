@@ -3,7 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(calculate("9/3+5*6/3"))
+	// fmt.Println(calculate2("9/3+5*6/3"))
+	fmt.Println(calculate2("1-2*3-6+1"))
 }
 
 type Stack struct {
@@ -175,6 +176,12 @@ func calculate1(s string) int {
 }
 
 // 推荐
+// 基于当前操作符的前一个操作符, 可判断前一个操作符的优先级
+// 由于存在运算优先级，我们采取的措施是使用一个栈保存数字，
+// 如果该数字之前的符号是加或减，那么把当前数字压入栈中，注意如果是减号，则加入当前数字的相反数，因为减法相当于加上一个相反数.
+// 如果之前的符号是乘或除，那么从栈顶取出一个数字和当前数字进行乘或除的运算，再把结果压入栈中，
+// 那么完成一遍遍历后，所有的乘或除都运算完了，再把栈中所有的数字都加起来就是最终结果了
+// 1-2*3-6+1 => 1+(-2)*3+(-6)+1
 func calculate2(s string) int {
 	var num int
 	n := len(s)
@@ -187,6 +194,8 @@ func calculate2(s string) int {
 		}
 
 		if s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/' || i == n-1 { // 最后一个字符是空格也行
+			// 9/3+5*6/3
+			fmt.Println(string(preSign), string(s[i]), num, st)
 			switch preSign {
 			case '+':
 			case '-':

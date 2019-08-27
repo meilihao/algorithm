@@ -28,7 +28,7 @@ func isValid(s string) bool {
 		if c == '(' || c == '{' || c == '[' {
 			// 入栈
 			stack = append(stack, c)
-		} else if len(stack) > 0 && brackets[c] == stack[len(stack)-1] { // 栈中有数据，且此元素与栈尾元素相同
+		} else if len(stack) > 0 && brackets[c] == stack[len(stack)-1] { // 栈中有数据，且此元素与栈顶元素相同
 			stack = stack[:len(stack)-1] // pop
 		} else {
 			return false

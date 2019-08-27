@@ -78,7 +78,7 @@ func (this *LRUCache) Put(key int, value int) {
 	var n *ListNode
 	if len(this.M) == this.C { // is full
 		n = this.Last.Pre     // 将结尾哨兵的前一个元素即最后一个元素替换成新value
-		delete(this.M, n.Key) // 可注释
+		delete(this.M, n.Key) // n将被挪用
 
 		n.Key = key
 		n.Val = value
