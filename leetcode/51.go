@@ -42,7 +42,7 @@ func solveNQueens(n int) [][]string {
 	// 因为递归时就是按行搜索, 因此不用额外记录queen的行信息
 	dfs(0, n, cols, d1, d2, board, &res)
 
-	fmt.Println("--result: ", res)
+	//fmt.Println("--result: ", res)
 
 	return generate_result(res, n)
 }
@@ -64,7 +64,7 @@ func dfs(r, n int, cols, d1, d2 []bool, board []int, res *[][]int) {
 		id1 = r - c + n //  '\' 的方程式, `+n`保证数组索引>=0
 		id2 = r + c     //2*n - r - c - 1 // '/' 的方程式
 
-		fmt.Println("***", r, c, n, id1, id2)
+		// fmt.Println("***", r, c, n, id1, id2)
 		if cols[c] || d1[id1] || d2[id2] { // 排除列和对角线, 即剪枝操作
 			continue
 		}
