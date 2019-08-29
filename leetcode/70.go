@@ -9,7 +9,7 @@ import "fmt"
 func main() {
 	n := 3
 
-	fmt.Println(climbStairs(n))
+	fmt.Println(climbStairs11(n))
 }
 
 // 动态规划
@@ -31,6 +31,20 @@ func climbStairs(n int) int {
 		dp[i] = dp[i-1] + dp[i-2]
 	}
 	return dp[n]
+}
+
+// 斐波那契数 : dp[i]=dp[i−1]+dp[i−2]
+func climbStairs11(n int) int {
+	if n == 1 {
+		return 1
+	}
+
+	first, second := 1, 2
+	for i := 3; i <= n; i++ {
+		first, second = second, first+second
+	}
+
+	return second
 }
 
 // 容易超时: o(n^2)
