@@ -84,9 +84,8 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 		start = pre.Next
 		end.Next = nil
 
-		pre.Next = reverse(start) // pre指向翻转好的链表
+		pre.Next = reverse(start) // pre指向翻转好的链表, 翻转后变成: pre -> end -> ... -> start
 
-		// 翻转后变成: pre -> end -> ... -> start
 		start.Next = next // 指向待处理的链表
 		pre = start
 		end = start
