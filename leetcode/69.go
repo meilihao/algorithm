@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	n := 5 // 1,4,8,9
-	fmt.Println(mySqrt(n))
+	fmt.Println(mySqrtN(n))
 }
 
 // 使用浮点
@@ -65,4 +65,19 @@ func mySqrt2(x int) int {
 	}
 
 	return up
+}
+
+// 牛顿迭代法
+func mySqrtN(x int) int {
+	if x <= 0 {
+		return x
+	}
+
+	r := x
+
+	for r*r > x {
+		r = (r + x/r) / 2
+	}
+
+	return r
 }
