@@ -67,7 +67,7 @@ func N2(row, col int) int {
 
 	for i := 1; i <= row; i++ {
 		for j := 1; j <= col; j++ {
-			dp[j] = dp[j] + dp[j-1]
+			dp[j] = dp[j] + dp[j-1] // dp[0]始终是1, 不参与运算
 		}
 	}
 
