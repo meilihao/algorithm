@@ -14,6 +14,13 @@
 ![](/misc/img/common_data_structure_operations.png)
 ![big o cheat sheet poster](/misc/img/big-o-cheat-sheet-poster.png)
 
+## 答题四步骤
+1. 仔细审题(含询问): 细节, 边界条件, 可能的极端情况
+1. 可能的解法: 时间空间复杂度 -> 最优解
+1. coding
+1. test cases
+1. 沟通和反馈
+
 参考:
 - [数据结构演示平台](http://ds.fmdca380.com/index.html)
 - [VisuAlgo - 数据结构和算法动态可视化](https://visualgo.net/zh)

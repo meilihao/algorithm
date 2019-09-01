@@ -6,6 +6,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/meilihao/algorithm/helper"
 )
@@ -28,7 +29,8 @@ func main() {
 	triangle := helper.TwoDimensionalByteArray2Int(triangleTmp)
 	//fmt.Println(triangle)
 
-	fmt.Println(minimumTotal(triangle))
+	//fmt.Println(minimumTotal(triangle))
+	fmt.Println(minimumTotalR(triangle))
 }
 
 // 原始递推方程(从下往上): dp[i][j] = min(dp[i+1,j],dp[i+1,j+1]) + triangle[i][j]
@@ -67,3 +69,33 @@ func min(a, b int) int {
 // 	r(i+1,j)
 // 	r(i+1,j+1)
 // }
+func minimumTotalR(triangle [][]int) int {
+	if len(triangle) == 0 || len(triangle[0]) == 0 {
+		return 0
+	}
+
+	min := 1 << 20
+	_dfs(triangle, 0, 0, 0, &min, "")
+
+	return min
+}
+
+func _dfs(triangle [][]int, i, j, sum int, min *int, path string) {
+	if i == len(triangle)-1 { // 到倒数第二层完成即结束了
+		sum += triangle[i][j]
+		path += strconv.Itoa(triangle[i][j])
+
+		fmt.Println(path, "#", sum)
+		if sum < *min {
+			*min = sum
+		}
+
+		return
+	}
+
+	sum += triangle[i][j]
+	path += strconv.Itoa(triangle[i][j]) + "->"
+
+	_dfs(triangle, i+1, j, sum, min, path)   //向下结合
+	_dfs(triangle, i+1, j+1, sum, min, path) // 向右下结合
+}
