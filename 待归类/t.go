@@ -76,6 +76,7 @@ func N2(row, col int) int {
 
 // best
 // 最优O(min(col,row))
+// 二维dp -> 一维dp 的操作叫状态压缩
 func N3(row, col int) int {
 	if row == 0 && col == 0 {
 		return 0

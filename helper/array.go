@@ -3,6 +3,7 @@ package helper
 import (
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -10,8 +11,8 @@ import (
 // arraySplit是数组分隔符,f是数组元素的处理函数
 // rows,cols为0时不检查
 // https://regex101.com/ 通过正则提取
-func String2TwoDimensionalByteArray(input, arraySplit string, f func(string) byte, rows, cols int) [][]byte {
-	a := make([][]byte, 0)
+func String2TwoDimensionalByteArray(input, arraySplit string, f func(string) string, rows, cols int) [][]string {
+	a := make([][]string, 0)
 
 	re := regexp.MustCompile(`(?m)\[(.*)\]`)
 
@@ -31,13 +32,13 @@ func String2TwoDimensionalByteArray(input, arraySplit string, f func(string) byt
 	return a
 }
 
-func parseArray(s, arraySplit string, f func(string) byte, cols int) []byte {
+func parseArray(s, arraySplit string, f func(string) string, cols int) []string {
 	ss := strings.Split(s, arraySplit)
 	if cols > 0 && len(ss) != cols {
 		panic(fmt.Sprintf("invalid row: %s", s))
 	}
 
-	a := make([]byte, len(ss))
+	a := make([]string, len(ss))
 	for i, v := range ss {
 		a[i] = f(v)
 	}
@@ -55,17 +56,38 @@ func String2Byte(s string) byte {
 	return ss[1]
 }
 
-func PrintTwoDimensionalByteArray(board [][]byte) {
+func PrintTwoDimensionalByteArray(board [][]string) {
 	var l int
 	for _, v := range board {
 		l = len(v)
 
 		for i, vv := range v {
 			if i == l-1 {
-				fmt.Printf("%s\n", string(vv))
+				fmt.Printf("%s\n", vv)
 			} else {
-				fmt.Printf("%s ", string(vv))
+				fmt.Printf("%s ", vv)
 			}
 		}
 	}
+}
+
+func TwoDimensionalByteArray2Int(board [][]string) [][]int {
+	a := make([][]int, 0, len(board))
+
+	for _, v := range board {
+		tmp := make([]int, 0, len(v))
+
+		for _, vv := range v {
+			n, err := strconv.Atoi(vv)
+			if err != nil {
+				panic(err)
+			}
+
+			tmp = append(tmp, n)
+		}
+
+		a = append(a, tmp)
+	}
+
+	return a
 }
