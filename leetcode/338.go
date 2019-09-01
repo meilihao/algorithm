@@ -17,6 +17,9 @@ func countBits(num int) []int {
 		//fmt.Println(i & (i - 1))
 		// i 比 i&(i-1) 多一个1, 同时 i > i&(i-1), 因此递推公式成立
 		res[i] = res[i&(i-1)] + 1
+
+		// 或者: i >> 1去掉i的最低位；因(i >> 1) < i，故res[i >> 1]已计算，因此i中1的个数为i >> 1中1的个数加最后一位1的个数，即为res[i >> 1] + (i & 1)
+		// res[i] = res[i>>1]+(i&1)
 	}
 
 	return res
