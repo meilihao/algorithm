@@ -7,9 +7,9 @@ package main
 import "fmt"
 
 func main() {
-	n := 3
+	n := 5
 
-	fmt.Println(climbStairs11(n))
+	fmt.Println(climbStairs3(n))
 }
 
 // 动态规划
@@ -74,13 +74,11 @@ func climbStairs3(n int) int {
 func climbStairsWithMemory(n int, a []int) int {
 	if n <= 1 { // 即a[0]=a[1]=1
 		return 1
+	} else if n == 2 {
+		return 2
+	} else if a[n] == 0 {
+		a[n] = climbStairsWithMemory(n-1, a) + climbStairsWithMemory(n-2, a)
 	}
-
-	// if a[n] > 0 {
-	// 	return a[n]
-	// }
-
-	a[n] = climbStairsWithMemory(n-1, a) + climbStairsWithMemory(n-2, a)
 
 	return a[n]
 }
