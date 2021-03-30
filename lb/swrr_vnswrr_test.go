@@ -1,12 +1,13 @@
-# 负载均衡
-参考:
-- [Nginx 的 Smooth Weighted Round-Robin（SWRR）](https://tenfy.cn/2018/11/12/smooth-weighted-round-robin/)
-- [Tengine 的 Virtual Node Smooth Weighted Round-Robin（VNSWRR）](https://mp.weixin.qq.com/s/3KZ99d94yqRDxEByn7nGWg)
-- [kkdai/maglev](https://github.com/kkdai/maglev)
+// 参考:
+// - [Nginx 的 Smooth Weighted Round-Robin（SWRR）](https://tenfy.cn/2018/11/12/smooth-weighted-round-robin/)
+// - [Tengine 的 Virtual Node Smooth Weighted Round-Robin（VNSWRR）](https://mp.weixin.qq.com/s/3KZ99d94yqRDxEByn7nGWg)
+// - [kkdai/maglev](https://github.com/kkdai/maglev)
+//
+// 结论:
+// 1. Node较少时, 这里的测试是N<=7时, SWRR有优势, N>7后VNSWRR有优势
+// 1. VNSWRR的ns/op稳定在8.75左右, 几乎不随N变化
 
-SWRR+VNSWRR:
-```go
-package main
+package lb
 
 import (
 	"math/rand"
@@ -150,8 +151,3 @@ func BenchmarkVNSWRR(b *testing.B) {
 
 	b.StopTimer()
 }
-
-// 结论:
-// 1. Node较少时, 这里的测试是N<=7时, SWRR有优势, N>7后VNSWRR有优势
-// 1. VNSWRR的ns/op稳定在8.75左右, 几乎不随N变化
-```
