@@ -86,6 +86,25 @@ fn hot_potato(names: Vec<&str>, num: usize) -> &str {
     q.remove_front().unwrap() // 剩下的人
 }
 
+// 回文检查
+fn palindrome_checker(pal: &str) -> bool {
+    let mut d = Deque::new(pal.len());
+    for c in pal.chars() {
+        let _r = d.add_rear(c); // 数据入队列
+    }
+
+    let mut is_pal = true;
+    while d.size() > 1 && is_pal {
+        let head = d.remove_front();
+        let tail = d.remove_rear();
+        if head != tail { // 比较首尾字符, 若不同则非回文
+            is_pal = false;
+        }
+    }
+
+    is_pal
+}
+
 fn main() {
     let mut d = Deque::new(4);
     let _r1 = d.add_front(1); let _r2 = d.add_front(2);
@@ -106,4 +125,8 @@ fn main() {
     let names = vec!["Shieber", "Tom", "Kew", "Lisa", "Marry", "Bob"];
     let rem = hot_potato(names, 2);
     println!("The left person is {rem}");
+
+    let pal = "rustsur";
+    let is_pal = palindrome_checker(pal);
+    println!("{pal} is palindrome string: {is_pal}");
 }
