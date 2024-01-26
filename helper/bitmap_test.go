@@ -89,3 +89,15 @@ func TestBitmapSet(t *testing.T) {
 
 	fmt.Printf("%b\n", b4)
 }
+
+func TestBitmapDel(t *testing.T) {
+	b4, _ := String2BitmapV2("C1F2")
+	fmt.Printf("%b\n", b4)
+	assert.False(t, BitmapSet(b4, 16))
+
+	assert.True(t, BitmapSet(b4, 3))
+	fmt.Printf("%b\n", b4)
+
+	assert.True(t, BitmapDel(b4, 3))
+	fmt.Printf("%b\n", b4)
+}

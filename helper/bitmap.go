@@ -68,7 +68,7 @@ func BitmapExist(m []byte, n int) bool {
 		return false
 	}
 
-	return (m[n/8] & (1 << (n % 8))) != 0
+	return m[n/8]&(1<<(n%8)) != 0
 }
 
 func BitmapSet(m []byte, n int) bool {
@@ -80,7 +80,21 @@ func BitmapSet(m []byte, n int) bool {
 		return false
 	}
 
-	m[n/8] |= (1 << (n % 8))
+	m[n/8] |= 1 << (n % 8)
+
+	return true
+}
+
+func BitmapDel(m []byte, n int) bool {
+	if len(m) == 0 {
+		return false
+	}
+
+	if n/8 >= len(m) { // 超出bitmap range
+		return false
+	}
+
+	m[n/8] &^= 1 << (n % 8)
 
 	return true
 }
