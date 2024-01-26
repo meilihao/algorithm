@@ -56,3 +56,31 @@ func String2BitmapV2(in string) ([]byte, error) {
 
 	return m, nil
 }
+
+// **高位在左侧**
+// n is from 0
+func BitmapExist(m []byte, n int) bool {
+	if len(m) == 0 {
+		return false
+	}
+
+	if n/8 >= len(m) { // 超出bitmap range
+		return false
+	}
+
+	return (m[n/8] & (1 << (n % 8))) != 0
+}
+
+func BitmapSet(m []byte, n int) bool {
+	if len(m) == 0 {
+		return false
+	}
+
+	if n/8 >= len(m) { // 超出bitmap range
+		return false
+	}
+
+	m[n/8] |= (1 << (n % 8))
+
+	return true
+}

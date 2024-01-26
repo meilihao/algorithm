@@ -61,3 +61,31 @@ func TestString2BitmapV2(t *testing.T) {
 	assert.NotNil(t, err)
 	fmt.Println(err)
 }
+
+func TestBitmapExist(t *testing.T) {
+	b4, err := String2BitmapV2("C1F2")
+	assert.Nil(t, err)
+	assert.Equal(t, len(b4), 2)
+	fmt.Printf("%b\n", b4)
+
+	// for i := 0; i < 8; i++ {
+	// 	fmt.Printf("%d, %t\n", i, BitmapExist(b4, i))
+	// }
+
+	assert.True(t, BitmapExist(b4, 0))
+	assert.False(t, BitmapExist(b4, 1))
+	assert.True(t, BitmapExist(b4, 6))
+	assert.True(t, BitmapExist(b4, 7))
+	assert.False(t, BitmapExist(b4, 16))
+}
+
+func TestBitmapSet(t *testing.T) {
+	b4 := make([]byte, 1)
+
+	assert.True(t, BitmapSet(b4, 0))
+	assert.False(t, BitmapSet(b4, 8))
+	assert.True(t, BitmapSet(b4, 6))
+	assert.True(t, BitmapSet(b4, 7))
+
+	fmt.Printf("%b\n", b4)
+}
