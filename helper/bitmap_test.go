@@ -1,0 +1,63 @@
+package helper
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+/*
+[11000001 11110000]
+[11000001 11110000]
+[11000001 11110010]
+*/
+func TestString2Bitmap(t *testing.T) {
+	b0, err := String2Bitmap("")
+	assert.Nil(t, err)
+	assert.Equal(t, len(b0), 0)
+
+	b3, err := String2Bitmap("C1F")
+	assert.Nil(t, err)
+	assert.Equal(t, len(b3), 2)
+	fmt.Printf("%b\n", b3)
+
+	b3_1, err := String2Bitmap("c1F")
+	assert.Nil(t, err)
+	assert.Equal(t, len(b3_1), 2)
+	fmt.Printf("%b\n", b3_1)
+
+	b4, err := String2Bitmap("C1F2")
+	assert.Nil(t, err)
+	assert.Equal(t, len(b4), 2)
+	fmt.Printf("%b\n", b4)
+
+	_, err = String2BitmapV2("=1F2")
+	assert.NotNil(t, err)
+	fmt.Println(err)
+}
+
+func TestString2BitmapV2(t *testing.T) {
+	b0, err := String2BitmapV2("")
+	assert.Nil(t, err)
+	assert.Equal(t, len(b0), 0)
+
+	b3, err := String2BitmapV2("C1F")
+	assert.Nil(t, err)
+	assert.Equal(t, len(b3), 2)
+	fmt.Printf("%b\n", b3)
+
+	b3_1, err := String2BitmapV2("c1F")
+	assert.Nil(t, err)
+	assert.Equal(t, len(b3_1), 2)
+	fmt.Printf("%b\n", b3_1)
+
+	b4, err := String2BitmapV2("C1F2")
+	assert.Nil(t, err)
+	assert.Equal(t, len(b4), 2)
+	fmt.Printf("%b\n", b4)
+
+	_, err = String2BitmapV2("=1F2")
+	assert.NotNil(t, err)
+	fmt.Println(err)
+}
