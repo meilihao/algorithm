@@ -98,3 +98,45 @@ func BitmapDel(m []byte, n int) bool {
 
 	return true
 }
+
+// **高位在右侧**
+// n is from 0
+func BitmapExistV2(m []byte, n int) bool {
+	if len(m) == 0 {
+		return false
+	}
+
+	if n/8 >= len(m) { // 超出bitmap range
+		return false
+	}
+
+	return m[n/8]&(1<<(7-(n%8))) != 0
+}
+
+func BitmapSetV2(m []byte, n int) bool {
+	if len(m) == 0 {
+		return false
+	}
+
+	if n/8 >= len(m) { // 超出bitmap range
+		return false
+	}
+
+	m[n/8] |= 1 << (7 - (n % 8))
+
+	return true
+}
+
+func BitmapDelV2(m []byte, n int) bool {
+	if len(m) == 0 {
+		return false
+	}
+
+	if n/8 >= len(m) { // 超出bitmap range
+		return false
+	}
+
+	m[n/8] &^= 1 << (7 - (n % 8))
+
+	return true
+}

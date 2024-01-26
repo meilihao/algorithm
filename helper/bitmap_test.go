@@ -101,3 +101,53 @@ func TestBitmapDel(t *testing.T) {
 	assert.True(t, BitmapDel(b4, 3))
 	fmt.Printf("%b\n", b4)
 }
+
+func TestBitmapExistV2(t *testing.T) {
+	b4, err := String2BitmapV2("C1F2")
+	assert.Nil(t, err)
+	assert.Equal(t, len(b4), 2)
+	fmt.Printf("%b\n", b4)
+
+	// for i := 0; i < 8; i++ {
+	// 	fmt.Printf("%d, %t\n", i, BitmapExist(b4, i))
+	// }
+
+	assert.True(t, BitmapExistV2(b4, 0))
+	assert.True(t, BitmapExistV2(b4, 1))
+	assert.False(t, BitmapExistV2(b4, 2))
+	assert.True(t, BitmapExistV2(b4, 7))
+	assert.False(t, BitmapExistV2(b4, 16))
+}
+
+func TestBitmapSetV2(t *testing.T) {
+	b4 := make([]byte, 1)
+
+	assert.True(t, BitmapSetV2(b4, 0))
+	assert.False(t, BitmapSetV2(b4, 8))
+	assert.True(t, BitmapSetV2(b4, 6))
+	assert.True(t, BitmapSetV2(b4, 7))
+
+	fmt.Printf("%b\n", b4)
+}
+
+func TestBitmapDelV2(t *testing.T) {
+	b4, _ := String2BitmapV2("C1F2")
+	fmt.Printf("%b\n", b4)
+	assert.False(t, BitmapSetV2(b4, 16))
+
+	assert.True(t, BitmapSetV2(b4, 3))
+	fmt.Printf("%b\n", b4)
+
+	assert.True(t, BitmapDelV2(b4, 3))
+	fmt.Printf("%b\n", b4)
+}
+
+func TestBitmapRang(t *testing.T) {
+	b4, _ := String2BitmapV2("C1F2")
+	fmt.Printf("%b\n", b4)
+
+	n := len(b4) * 8
+	for i := 0; i < n; i++ {
+		fmt.Println(i, BitmapExistV2(b4, i))
+	}
+}
