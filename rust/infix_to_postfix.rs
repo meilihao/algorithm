@@ -18,7 +18,7 @@
 	
 		如果标记是操作数，将其附加到输出列表的末尾
 		如果标记是左括号，将其压到 op_stack 上
-		如果标记是右括号，则弹出 op_stack，直到删除相应左括号，将运算符加入 postfix
+		如果标记是右括号，则弹出 op_stack，直到删除到相应左括号，将此过程中弹出的运算符加入 postfix
 		如果标记是运算符 + - * /，则压入 op_stack, 但要先弹出 op_stack 中更高或相等优先级的运算符到 postfix
 	4. 当输入处理完后，检查 op_stack, 仍在栈上的运算符都可弹出到 postfix
 */
@@ -112,7 +112,18 @@ fn infix_to_postfix(infix: &str) -> Option<String> {
     // ops 保存操作符号、postfix 保存后缀表达式
     let mut op_stack = Stack::new();
     let mut postfix = Vec::new();
-    for token in infix.split_whitespace() {           postfix.push(top);
+    for token in infix.split_whitespace() {
+        if ("A" <= token && token <= "Z") || ("0" <= token && token <= "9") {
+            // 0 - 9  和 A-Z 范围字符入栈
+            postfix.push(token);
+        } else if "(" == token  {
+            // 遇到开括号，将操作符入栈
+            op_stack.push(token);
+        } else if ")" == token  {
+            // 遇到闭括号，将操作数入栈
+            let mut top = op_stack.pop().unwrap();
+            while top != "(" {
+                postfix.push(top);
                 top = op_stack.pop().unwrap();
             }
         } else {
@@ -125,7 +136,7 @@ fn infix_to_postfix(infix: &str) -> Option<String> {
         }
     }
 
-    // 剩下的操作数入栈
+    // 剩下的操作符入栈
     while !op_stack.is_empty() {
         postfix.push(op_stack.pop().unwrap())
     }
