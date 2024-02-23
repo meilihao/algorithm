@@ -105,7 +105,7 @@ fn infix_to_postfix(infix: &str) -> Option<String> {
 
     // 设置各个符号的优先级
     let mut prec = HashMap::new();
-    prec.insert("(", 1); prec.insert(")", 1);
+    prec.insert("(", 1); prec.insert(")", 1); // 左括号赋予最低的优先级，这样，与其进行比较的任何运算符都具有更高的优先级
     prec.insert("+", 2); prec.insert("-", 2);
     prec.insert("*", 3); prec.insert("/", 3);
 
@@ -134,6 +134,10 @@ fn infix_to_postfix(infix: &str) -> Option<String> {
             }
             op_stack.push(token);
         }
+
+        println!("----------t:{:?}",token );
+        println!("--op:{:?}",op_stack );
+        println!("--out:{:?}\n",postfix );
     }
 
     // 剩下的操作符入栈
