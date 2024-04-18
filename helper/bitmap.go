@@ -20,6 +20,7 @@ func String2Bitmap(in string) ([]byte, error) {
 // a = 97
 // A = 65
 // 0 = 48
+// 返回Bitmap包含的字节数
 func String2BitmapV2(in string) ([]byte, error) {
 	if len(in) == 0 {
 		return nil, nil
