@@ -1,11 +1,12 @@
-package demo
+package ago
 
 import (
-	"algo/helper"
 	"bufio"
 	"fmt"
 	"strings"
 	"testing"
+
+	"ago/helper"
 
 	"github.com/davecgh/go-spew/spew"
 )

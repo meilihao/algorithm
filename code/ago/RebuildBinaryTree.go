@@ -14,23 +14,24 @@
 
 */
 
-package main
+package ago
 
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"os"
+	"testing"
+
+	"ago/helper"
 
 	"github.com/bradleyjkemp/memviz"
 )
 
-type node struct {
-	value int
-	left  *node
-	right *node
+func TestRebuildBinaryTree(t *testing.T) {
+	RebuildBinaryTree()
 }
 
-func main() {
+func RebuildBinaryTree() {
 	preOrder := []int{1, 2, 4, 7, 3, 5, 6, 8}
 	midOrder := []int{4, 7, 2, 1, 5, 3, 8, 6}
 
@@ -52,12 +53,12 @@ func main() {
 
 	buf := &bytes.Buffer{}
 	memviz.Map(buf, root)
-	ioutil.WriteFile("a.dot", buf.Bytes(), 0600)
+	os.WriteFile("a.dot", buf.Bytes(), 0600)
 }
 
-func rebuildBinaryTree(pre, mid []int) *node {
-	root := &node{
-		value: pre[0],
+func rebuildBinaryTree(pre, mid []int) *helper.TreeNode[int] {
+	root := &helper.TreeNode[int]{
+		Val: pre[0],
 	}
 
 	// 其实len(pre)必定等于len(mid)
@@ -92,7 +93,7 @@ func rebuildBinaryTree(pre, mid []int) *node {
 }
 
 // 前序遍历输出
-func PreOutput(root *node) {
+func PreOutput(root *helper.TreeNode[int]) {
 	if root == nil {
 		return
 	}
@@ -103,7 +104,7 @@ func PreOutput(root *node) {
 }
 
 // 中序遍历输出
-func MidOutput(root *node) {
+func MidOutput(root *helper.TreeNode[int]) {
 	if root == nil {
 		return
 	}

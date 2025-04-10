@@ -5,7 +5,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/meilihao/algorithm/helper"
+	"ago/helper"
 )
 
 func main() {

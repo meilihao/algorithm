@@ -1,10 +1,15 @@
-package main
+package ago
 
 import (
 	"fmt"
+	"testing"
 )
 
-func main() {
+func TestSort(t *testing.T) {
+	Sort()
+}
+
+func Sort() {
 	// a := []int{1, 5, 2, 6, 9, 0, 3, 5, 7, 8}
 
 	// fmt.Println(BubbleSort(a))

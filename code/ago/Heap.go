@@ -1,7 +1,10 @@
 // https://en.wikipedia.org/wiki/Heap_%28data_structure%29
-package main
+package ago
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 type Heap struct {
 	a     []int
@@ -59,7 +62,11 @@ func (h *Heap) Sort() {
 	}
 }
 
-func main() {
+func TestHeap(t *testing.T) {
+	HeapOps()
+}
+
+func HeapOps() {
 	nums := []int{0, 7, 5, 19, 8, 4, 1, 20, 13, 16}
 	fmt.Println(nums)
 

@@ -4,16 +4,30 @@ import "fmt"
 
 type Stack[T any] struct {
 	items []T
+	max   int
 }
 
 // 创建一个新的堆栈
-func NewStack[T any]() *Stack[T] {
-	return &Stack[T]{}
+func NewStack[T any](max int) *Stack[T] {
+	if max > 0 {
+		return &Stack[T]{
+			max:   max,
+			items: make([]T, 0, max),
+		}
+	} else {
+		return &Stack[T]{}
+	}
 }
 
 // 将元素推入堆栈
-func (s *Stack[T]) Push(element T) {
+func (s *Stack[T]) Push(element T) bool {
+	if s.max > 0 && len(s.items) == s.max {
+		return false
+	}
+
 	s.items = append(s.items, element)
+
+	return true
 }
 
 // 从堆栈弹出元素

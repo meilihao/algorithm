@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/meilihao/algorithm/helper"
+	"ago/helper"
 )
 
 func main() {
@@ -65,10 +65,11 @@ func min(a, b int) int {
 }
 
 // // 递归
-// r(i,j int){
-// 	r(i+1,j)
-// 	r(i+1,j+1)
-// }
+//
+//	r(i,j int){
+//		r(i+1,j)
+//		r(i+1,j+1)
+//	}
 func minimumTotalR(triangle [][]int) int {
 	if len(triangle) == 0 || len(triangle[0]) == 0 {
 		return 0
