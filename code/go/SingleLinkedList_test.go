@@ -1,13 +1,16 @@
 package ago
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 type Node struct {
 	Value int
 	Next  *Node
 }
 
-func main() {
+func TestSingleLink(t *testing.T) {
 	//head := GenerateList1(10)
 	head := GenerateList2(10)
 	PrintList(head)
@@ -94,8 +97,8 @@ func ReverseList(head *Node) *Node {
 		cur = tmp
 	}
 
-	head.Next = nil
-	head = pre
+	head.Next = nil // head变为了末尾节点, 因为它仍指向原先的第二个节点. 反转后该节点已指向末尾节点head, 导致循环了, 需要打破
+	head = pre      // 设置新head
 
 	return head
 }

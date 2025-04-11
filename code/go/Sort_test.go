@@ -14,8 +14,10 @@ func Sort() {
 
 	// fmt.Println(BubbleSort(a))
 	// fmt.Println(SortAges(a))
-	sa := []int{5, 4, 3, 6, 1, 3, 2, 6, 5}
-	QuickSort(sa)
+	//sa := []int{5, 4, 3, 6, 1, 3, 2, 6, 5}
+	sa := []int{5, 6, 5}
+	//QuickSort(sa)
+	QuickSort2(sa)
 	fmt.Println(sa)
 	fmt.Println(BinarySearch(sa, 1))
 }
@@ -171,15 +173,19 @@ func SortAges(a []int) []int {
 }
 
 // best
+// 双指针快排
 func quickSort(array []int, left, right int) {
 	if left >= right {
 		return
 	}
 
 	tmp := array[left]  //基点,通常是前一个/最后一个元素
-	i, j := left, right //i为什么不能是left+1(即基点也要参与比较), test case(5,6,5):不参与时不能保证array[left+1]<=tmp,即互换后不能保证左边不大于基点
+	i, j := left, right //i为什么不能是left+1(即**基点参与比较**), test case(5,6,5):若 i 从 left+1 开始，第一次分区后i=1, 交换后变为[[6,5],[5]]即互换后不能保证左边不大于基点
 
-	for i != j { // 两头向中间靠拢
+	for i != j { // 两头向中间靠拢. 当i==j时, 左侧所有元素 <= tmp，右侧所有元素 >= tmp
+		// 最左边为基准时, 为什么先移动 j 再移动 i？
+		// - 保证 i 和 j 相遇的位置是第一个 >= tmp 的元素
+		// - 如果先移动 i，可能错过某些交换机会（如 [3,1,2,4] 的 case）
 		for array[j] >= tmp && i < j { // 从基点对应的另一端开始
 			j--
 		}
@@ -195,7 +201,7 @@ func quickSort(array []int, left, right int) {
 		}
 	}
 
-	fmt.Println(array)
+	fmt.Println(array, left, right, i)
 
 	array[left], array[i] = array[i], array[left] // i为中间位置, 与基点交换, 交换后原基点数据在中间
 
@@ -209,7 +215,7 @@ func quickSort2(arr []int, start, end int) {
 		return
 	}
 
-	// 选取第一位当对比数字
+	// 选取最后位当对比数字
 	pivot := arr[end]
 
 	// 有点类似选择排序. 我们通过游标 i 把 A[p…r-1] 分成两部分. A[p…i-1] 的元素都是小于pivot 的，
@@ -236,6 +242,10 @@ func quickSort2(arr []int, start, end int) {
 // 快速排序方式
 func QuickSort(array []int) {
 	quickSort(array, 0, len(array)-1)
+}
+
+func QuickSort2(array []int) {
+	quickSort2(array, 0, len(array)-1)
 }
 
 // 二分查找(BinarySearch) : 针对**有序数据集合**的查找算法

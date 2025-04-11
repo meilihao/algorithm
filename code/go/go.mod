@@ -1,4 +1,4 @@
-module ago
+module al
 
 go 1.24.0
 

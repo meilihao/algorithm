@@ -22,7 +22,7 @@ import (
 	"os"
 	"testing"
 
-	"ago/helper"
+	"al/helper"
 
 	"github.com/bradleyjkemp/memviz"
 )
@@ -70,7 +70,7 @@ func rebuildBinaryTree(pre, mid []int) *helper.TreeNode[int] {
 		}
 	}
 
-	ln := -1
+	ln := -1 // root节点对应在mid中的位置, 也可用于推断pre中左右子树的个数
 	for i, v := range mid {
 		if v == pre[0] {
 			ln = i
@@ -82,11 +82,11 @@ func rebuildBinaryTree(pre, mid []int) *helper.TreeNode[int] {
 	}
 
 	if ln > 0 { // 左子树有内容
-		root.left = rebuildBinaryTree(pre[1:1+ln], mid[:ln])
+		root.Left = rebuildBinaryTree(pre[1:1+ln], mid[:ln])
 	}
 
 	if ln < len(mid)-1 { // 右子树有内容
-		root.right = rebuildBinaryTree(pre[ln+1:], mid[ln+1:])
+		root.Right = rebuildBinaryTree(pre[ln+1:], mid[ln+1:])
 	}
 
 	return root
@@ -98,9 +98,9 @@ func PreOutput(root *helper.TreeNode[int]) {
 		return
 	}
 
-	fmt.Println(root.value)
-	PreOutput(root.left)
-	PreOutput(root.right)
+	fmt.Println(root.Val)
+	PreOutput(root.Left)
+	PreOutput(root.Right)
 }
 
 // 中序遍历输出
@@ -109,7 +109,7 @@ func MidOutput(root *helper.TreeNode[int]) {
 		return
 	}
 
-	MidOutput(root.left)
-	fmt.Println(root.value)
-	MidOutput(root.right)
+	MidOutput(root.Left)
+	fmt.Println(root.Val)
+	MidOutput(root.Right)
 }

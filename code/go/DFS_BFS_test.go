@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"ago/helper"
+	"al/helper"
 )
 
 type node2 struct {
@@ -27,13 +27,13 @@ func DBFS() {
 
 // DFS(Deep First Search）深度优先搜索
 // 这里是非递归写法, 也可使用递归实现(常用,因为不用自行维护一个stack)
-func depthFirstSearch[T int](root *helper.TreeNode[T]) {
-	st := helper.NewStack[int](10)
-	var tmp *helper.TreeNode[T]
+func depthFirstSearch(root *helper.TreeNode[int]) {
+	st := helper.NewStack[*helper.TreeNode[int]](0)
+	var tmp *helper.TreeNode[int]
 
 	st.Push(root)
 	for !st.IsEmpty() {
-		tmp = st.Pop()
+		tmp, _ = st.Pop()
 		fmt.Println(tmp.Val)
 
 		if tmp.Right != nil {
@@ -48,9 +48,9 @@ func depthFirstSearch[T int](root *helper.TreeNode[T]) {
 
 // BFS(Breath First Search）广度优先搜索
 // bfs没有递归写法
-func breadthFirstSearch[T int](root *helper.TreeNode[T]) {
-	q := helper.NewQueue[int](10)
-	var tmp *helper.TreeNode[T]
+func breadthFirstSearch(root *helper.TreeNode[int]) {
+	q := helper.NewQueue[*helper.TreeNode[int]](0)
+	var tmp *helper.TreeNode[int]
 
 	q.Push(root)
 	for !q.IsEmpty() {
@@ -66,7 +66,7 @@ func breadthFirstSearch[T int](root *helper.TreeNode[T]) {
 	}
 }
 
-func buildTestTree[T int]() *helper.TreeNode[T] {
+func buildTestTree() *helper.TreeNode[int] {
 	root := newNode(1)
 	root.Left = newNode(2)
 	root.Right = newNode(3)

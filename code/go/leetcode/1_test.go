@@ -1,14 +1,17 @@
 /*
-	Two Sum 两数之和
+Two Sum 两数之和
 
-	for 算法效率
+for 算法效率
 */
-package main
+package leetcode
 
-import "fmt"
-import "sort"
+import (
+	"fmt"
+	"sort"
+	"testing"
+)
 
-func main() {
+func TestTwoSum(t *testing.T) {
 	nums := []int{3, 2, 4} //{2, 7, 11, 15}
 	target := 6
 

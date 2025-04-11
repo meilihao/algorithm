@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"ago/helper"
+	"al/helper"
 
 	"github.com/davecgh/go-spew/spew"
 )
@@ -63,7 +63,7 @@ type Vdev struct {
 */
 func ParseZpoolStatusConfig(lines []string) []*Vdev {
 	devs := []*Vdev{}
-	stack := helper.NewStack[*Vdev]()
+	stack := helper.NewStack[*Vdev](0)
 	lastLevel := 0 // 上一行的缩进
 	curLevel := 0  //  当前行的缩进
 	for _, line := range lines {
@@ -132,5 +132,5 @@ func GetIndentSpace(line string) int {
 			return n / 2
 		}
 	}
-	return n / 2
+	return 0
 }
