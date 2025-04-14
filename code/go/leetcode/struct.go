@@ -47,9 +47,44 @@ func GenerateListNode(nums []int) *ListNode {
 	return head
 }
 
-func PrintListNode(head *ListNode) {
+func GenerateListNodeByChars(s string) *ListNode {
+	var head, pre, tmp *ListNode
+
+	for _, v := range s {
+		tmp = &ListNode{
+			Val: int(v),
+		}
+
+		if pre != nil {
+			pre.Next = tmp
+			pre = tmp
+		} else {
+			pre = tmp
+			head = tmp
+		}
+	}
+
+	return head
+}
+
+func PrintListNode(head *ListNode, isChars ...bool) {
+	if head == nil {
+		fmt.Println("empty list")
+
+		return
+	}
+
+	var isChar bool
+	if len(isChars) > 0 {
+		isChar = isChars[0]
+	}
+
 	for head != nil {
-		fmt.Print(head.Val)
+		if isChar {
+			fmt.Printf("%c", head.Val)
+		} else {
+			fmt.Print(head.Val)
+		}
 
 		head = head.Next
 		if head != nil {

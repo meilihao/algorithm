@@ -1,10 +1,15 @@
 // 50. Pow(x, n)
 // 思路分治
-package main
+// 快速幂算法的核心思想是将幂指数 n 拆分为若干个二进制位上的 1 的和，然后将x 的n 次幂转化为 x 的若干个幂的乘积
+// 时间复杂度 O(logn)，空间复杂度O(1), n 为幂指数
+package leetcode
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-func main() {
+func TestMyPow(t *testing.T) {
 	x := 2.0
 	n := 15
 

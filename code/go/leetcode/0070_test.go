@@ -2,19 +2,23 @@
 // 思路:
 // 1. 递归求解
 // 2. 动态规划
-package main
+package leetcode
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-func main() {
+func TestClimbStairs(t *testing.T) {
 	n := 5
 
-	fmt.Println(climbStairs3(n))
+	fmt.Println(climbStairs(n))
+	//fmt.Println(climbStairs3(n))
 }
 
 // 动态规划
 
-// 算法:
+// 算法: f(n) = f(n-1) + f(n-2)
 // 第 i 阶可以由以下两种方法得到：
 // 1. 在第 (i−1) 阶后向上爬一阶
 // 2. 在第 (i−2) 阶后向上爬 2 阶

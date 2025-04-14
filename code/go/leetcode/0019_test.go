@@ -1,55 +1,18 @@
-package main
+package leetcode
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func main() {
+func TestRemoveNthFromEnd(t *testing.T) {
 	s := "123"
-	head := BuildList(s)
-	printList(head)
+	head := GenerateListNodeByChars(s)
+	PrintListNode(head, true)
 	fmt.Println("---")
 
 	removedHead := removeNthFromEnd2(head, 3)
-	printList(removedHead)
-}
-
-func BuildList(s string) *ListNode {
-	var head, pre, tmp *ListNode
-
-	for _, v := range s {
-		tmp = &ListNode{
-			Val: int(v),
-		}
-
-		if pre != nil {
-			pre.Next = tmp
-			pre = tmp
-		} else {
-			pre = tmp
-			head = tmp
-		}
-	}
-
-	return head
-}
-
-func printList(head *ListNode) {
-	if head == nil {
-		fmt.Println("empty list")
-
-		return
-	}
-
-	tmp := head
-	for tmp != nil {
-		fmt.Printf("%c\n", tmp.Val)
-
-		tmp = tmp.Next
-	}
+	PrintListNode(removedHead, true)
 }
 
 // 简化成另一个问题：删除从列表开头数起的第 (L - n + 1) 个结点，其中 L 是列表的长度, 其前一个节点为L-n

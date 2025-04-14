@@ -15,7 +15,10 @@ func TestSingleLink(t *testing.T) {
 	head := GenerateList2(10)
 	PrintList(head)
 
-	head = ReverseList(head)
+	// head = ReverseList(head)
+	// PrintList(head)
+
+	head = ReverseList2(head)
 	PrintList(head)
 }
 
@@ -101,4 +104,21 @@ func ReverseList(head *Node) *Node {
 	head = pre      // 设置新head
 
 	return head
+}
+
+// best
+func ReverseList2(head *Node) *Node {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	var pre, next *Node
+	for head != nil {
+		next = head.Next // 保存要反转到头的那个节点
+		head.Next = pre  // 要反转的那个节点指向已经反转的上一个节点, 第一次反转的时候会指向null
+		pre = head       // 上一个已经反转到头部的节点
+		head = next      // 一直向链表尾走
+	}
+
+	return pre
 }

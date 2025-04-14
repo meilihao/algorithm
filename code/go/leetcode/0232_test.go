@@ -2,11 +2,14 @@
 // 思路: 数学的负负得正
 // leetcode 环境代码不包含`import "fmt"`报错
 // ![](/misc/img/20180527092623978.png)
-package main
+package leetcode
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-func main() {
+func Test232(t *testing.T) {
 	queue := Constructor()
 
 	queue.Push(1)
@@ -39,7 +42,7 @@ func (queue *MyQueue) Push(x int) {
 // Pop Removes the element from in front of queue and returns that element.
 func (queue *MyQueue) Pop() int {
 	if queue.Output.isEmpty() {
-		//优化: 栈a中留一个元素供pop,可以少一次操作
+		//优化: 栈a中留一个元素供pop, 最后一个元素直接pop(), 这样可以少一次操作
 		for queue.Input.len() > 1 {
 			queue.Output.push(queue.Input.pop())
 		}
