@@ -2,18 +2,21 @@
 // 思路:
 // 1. 贪心
 // 2. dp(动态规划)
-package main
+package leetcode
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-func main() {
+func TestMaxProfit122(t *testing.T) {
 	nums := []int{7, 1, 5, 3, 6, 4}
 
-	fmt.Println(maxProfit(nums))
+	fmt.Println(maxProfit122(nums))
 }
 
 // 贪心
-func maxProfit(prices []int) int {
+func maxProfit122(prices []int) int {
 	res := 0
 
 	for i := 1; i < len(prices); i++ { // 已能排除len(prices) < 2的情况

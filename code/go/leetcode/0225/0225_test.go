@@ -4,11 +4,14 @@
 // 1. 添加数据，直接在queue栈添加
 // 2. 移除数据，将queue栈的前n-1个元素添加到help栈，将第n个元素移除(作为栈顶元素弹出)，然后修改引用
 // ![](/misc/img/20180527105637787.png)
-package main
+package leetcode
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-func main() {
+func TestMyStack(t *testing.T) {
 	s := Constructor()
 	s.Push(1)
 	s.Push(2)
@@ -19,7 +22,8 @@ func main() {
 
 // MyStack 是用 Queue 实现的 栈
 type MyStack struct {
-	queue, help *Queue
+	queue *Queue // 非空队列
+	help  *Queue
 }
 
 // Constructor Initialize your data structure here.

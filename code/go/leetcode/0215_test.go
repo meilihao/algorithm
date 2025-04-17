@@ -1,18 +1,21 @@
 // 其实就是top k的问题, 相对好的解题思路:
 // 1. 最小堆
 // 2. 快排思路(最优)
-package main
+package leetcode
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-func main() {
+func TestFindKthLargest(t *testing.T) {
 	// a := []int{1, 5, 2, 6, 9, 0, 3, 5, 7, 8}
 
 	// fmt.Println(BubbleSort(a))
 	// fmt.Println(SortAges(a))
 	sa := []int{3, 2, 1, 5, 6, 4}
 	fmt.Println(sa)
-	fmt.Println("result:", findKthLargest(sa, 2))
+	fmt.Println("result:", findKthLargest(sa, 1))
 	fmt.Println(sa)
 }
 
@@ -22,8 +25,8 @@ func findKthLargest(nums []int, k int) int {
 		panic("invalid input")
 	}
 
-	return quickSort(nums, 0, n-1, n-k)
-	//return quickSort2(nums, 0, n-1, k)
+	//return quickSort(nums, 0, n-1, n-k)
+	return quickSort2(nums, 0, n-1, k-1)
 }
 
 // 从小到大排
@@ -65,6 +68,7 @@ func quickSort(arr []int, start, end, k int) int {
 
 // best
 // 根据题意: 选择从大到小排序
+// k=目标位置的索引
 func quickSort2(arr []int, start, end, k int) int {
 	if start >= end {
 		return arr[end]
@@ -86,9 +90,9 @@ func quickSort2(arr []int, start, end, k int) int {
 	arr[i], arr[end] = arr[end], arr[i]
 
 	//fmt.Println(i, k-1)
-	if i == k-1 {
+	if i == k {
 		return arr[i]
-	} else if i > k-1 { // k选中的值应该在i的左侧
+	} else if i > k { // k选中的值应该在i的左侧
 		return quickSort2(arr, start, i-1, k)
 	} else {
 		return quickSort2(arr, i+1, end, k)

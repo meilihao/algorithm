@@ -2,16 +2,12 @@
 // 思路:
 // 1. bfs
 // 2. dfs 但需要传递level(层数)
-package main
+package leetcode
 
-func main() {
+import "testing"
 
-}
+func TestLevelOrder(t *testing.T) {
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
 }
 
 // bfs
@@ -67,7 +63,7 @@ func dequeue() *TreeNode {
 }
 
 // dfs
-func levelOrder(root *TreeNode) [][]int {
+func levelOrder2(root *TreeNode) [][]int {
 	res := [][]int{}
 	var dfs func(*TreeNode, int)
 

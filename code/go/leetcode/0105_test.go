@@ -14,24 +14,21 @@
 
 */
 
-package ago
+package leetcode
 
 import (
 	"bytes"
 	"fmt"
-	"os"
 	"testing"
-
-	"al/helper"
 
 	"github.com/bradleyjkemp/memviz"
 )
 
-func TestRebuildBinaryTree(t *testing.T) {
-	RebuildBinaryTree()
+func TestRebuildTree(t *testing.T) {
+	RebuildTree()
 }
 
-func RebuildBinaryTree() {
+func RebuildTree() {
 	preOrder := []int{1, 2, 4, 7, 3, 5, 6, 8}
 	midOrder := []int{4, 7, 2, 1, 5, 3, 8, 6}
 
@@ -39,7 +36,7 @@ func RebuildBinaryTree() {
 		panic("invalid binary tree")
 	}
 
-	root := rebuildBinaryTree(preOrder, midOrder)
+	root := rebuildTree(preOrder, midOrder)
 
 	PreOutput(root)
 	fmt.Println("----")
@@ -49,15 +46,17 @@ func RebuildBinaryTree() {
 	preOrder = []int{1, 2, 3, 4, 5}
 	midOrder = []int{1, 2, 3, 4, 5}
 
-	root = rebuildBinaryTree(preOrder, midOrder)
+	root = rebuildTree(preOrder, midOrder)
 
 	buf := &bytes.Buffer{}
 	memviz.Map(buf, root)
-	os.WriteFile("a.dot", buf.Bytes(), 0600)
+	//os.WriteFile("a.dot", buf.Bytes(), 0600)
 }
 
-func rebuildBinaryTree(pre, mid []int) *helper.TreeNode[int] {
-	root := &helper.TreeNode[int]{
+// pre=[root+left+right]
+// mid=[left+root+right]
+func rebuildTree(pre, mid []int) *TreeNode {
+	root := &TreeNode{
 		Val: pre[0],
 	}
 
@@ -82,18 +81,37 @@ func rebuildBinaryTree(pre, mid []int) *helper.TreeNode[int] {
 	}
 
 	if ln > 0 { // 左子树有内容
-		root.Left = rebuildBinaryTree(pre[1:1+ln], mid[:ln])
+		root.Left = rebuildTree(pre[1:1+ln], mid[:ln]) // pre[1:1+ln] = pre[1:len(mid[:ln])+1] // 从1开始是跳过root
 	}
 
 	if ln < len(mid)-1 { // 右子树有内容
-		root.Right = rebuildBinaryTree(pre[ln+1:], mid[ln+1:])
+		root.Right = rebuildTree(pre[ln+1:], mid[ln+1:]) //pre[ln+1:] = pre[len(mid)+1] // pre[ln+1:]剩余节点皆是right
 	}
 
 	return root
 }
 
+// 解法2
+func buildTree2(preorder []int, inorder []int) *TreeNode {
+	if len(preorder) == 0 {
+		return nil
+	}
+	root := &TreeNode{
+		Val: preorder[0],
+	}
+	i := 0
+	for ; i < len(inorder); i++ {
+		if inorder[i] == preorder[0] {
+			break
+		}
+	}
+	root.Left = buildTree2(preorder[1:len(inorder[:i])+1], inorder[:i])
+	root.Right = buildTree2(preorder[len(inorder[:i])+1:], inorder[i+1:])
+	return root
+}
+
 // 前序遍历输出
-func PreOutput(root *helper.TreeNode[int]) {
+func PreOutput(root *TreeNode) {
 	if root == nil {
 		return
 	}
@@ -104,7 +122,7 @@ func PreOutput(root *helper.TreeNode[int]) {
 }
 
 // 中序遍历输出
-func MidOutput(root *helper.TreeNode[int]) {
+func MidOutput(root *TreeNode) {
 	if root == nil {
 		return
 	}

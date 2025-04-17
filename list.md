@@ -25,4 +25,5 @@
 - [doocs/leetcode](https://github.com/doocs/leetcode)
 
   - [《程序员面试金典（第 6 版）》系列](https://github.com/doocs/leetcode/blob/main/lcci/README.md)
-- [吴师兄学算法](https://blog.algomooc.com/LeetCode)
+- [吴师兄学算法](https://blog.algomooc.com)
+- [LeetCode 热题100](https://developer.aliyun.com/article/1660127)

@@ -1,4 +1,4 @@
-package lcof
+package leetcode
 
 import (
 	"fmt"
@@ -6,14 +6,14 @@ import (
 )
 
 func TestFibonacci(t *testing.T) {
-	fmt.Println(Fibonacci(5))
+	fmt.Println(fib(5))
 }
 
 /*
 F(0) = 0,   F(1) = 1
 F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
 */
-func Fibonacci(n int) int {
+func fib(n int) int {
 	if n <= 0 {
 		return 0
 	}
@@ -28,4 +28,14 @@ func Fibonacci(n int) int {
 		a, b = b, result
 	}
 	return result
+}
+
+// best
+func fib2(n int) int {
+	p, q, r := 0, 1, 1
+	for i := 0; i < n; i++ {
+		p, q, r = q, r, r+q
+
+	}
+	return p
 }
