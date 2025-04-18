@@ -6,7 +6,8 @@ import (
 )
 
 func TestRemoveDuplicates(t *testing.T) {
-	fmt.Println(removeDuplicates(nil))
+	nums := []int{1, 1, 2}
+	fmt.Println(removeDuplicates(nums))
 	fmt.Println(removeDuplicates2(nil))
 }
 

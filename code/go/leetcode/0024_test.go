@@ -1,53 +1,16 @@
-package main
+package leetcode
 
-import "fmt"
+import (
+	"testing"
+)
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func main() {
+func TestSwapPairs(t *testing.T) {
 	s := "1234"
-	head := BuildList(s)
+	head := GenerateListNodeByChars(s)
+	PrintListNode(head, true)
 
 	head2 := swapPairs2(head)
-	printList(head2)
-}
-
-func BuildList(s string) *ListNode {
-	var head, pre, tmp *ListNode
-
-	for _, v := range s {
-		tmp = &ListNode{
-			Val: int(v),
-		}
-
-		if pre != nil {
-			pre.Next = tmp
-			pre = tmp
-		} else {
-			pre = tmp
-			head = tmp
-		}
-	}
-
-	return head
-}
-
-func printList(head *ListNode) {
-	if head == nil {
-		fmt.Println("empty list")
-
-		return
-	}
-
-	tmp := head
-	for tmp != nil {
-		fmt.Printf("%c\n", tmp.Val)
-
-		tmp = tmp.Next
-	}
+	PrintListNode(head2, true)
 }
 
 // 需要三个指针: 相邻元素 + 相邻元素前面的一个元素(用于指向后两个相邻元素)
@@ -64,7 +27,7 @@ func swapPairs(head *ListNode) *ListNode {
 	pre := dummyHead
 	var cur, next *ListNode
 
-	for pre.Next != nil && pre.Next.Next != nil {
+	for pre.Next != nil && pre.Next.Next != nil { // 有元素需要交换
 		cur = pre.Next
 		next = cur.Next
 

@@ -59,7 +59,7 @@ func removeNthFromEnd2(head *ListNode, n int) *ListNode {
 
 	first := dummy
 
-	i := n + 1
+	i := n + 1 // 多了dummy
 	for ; i > 0 && first != nil; i-- {
 		first = first.Next
 	}
@@ -72,6 +72,33 @@ func removeNthFromEnd2(head *ListNode, n int) *ListNode {
 
 	second := dummy
 	// fmt.Println(first, second)
+	for first != nil { // 到达最后一个节点
+		first = first.Next
+		second = second.Next
+	}
+	// 当first==nil时, first和second相距n, 此时second刚好在 L-N
+	second.Next = second.Next.Next
+
+	return dummy.Next
+}
+
+func removeNthFromEnd3(head *ListNode, n int) *ListNode {
+	if head == nil || n <= 0 {
+		return head
+	}
+
+	dummy := &ListNode{ // 哨兵节点
+		Next: head,
+	}
+
+	first := dummy
+	second := dummy
+
+	// 已假定前提n有效
+	for i := 1; i <= n+1; i++ { // 多了dummy
+		first = first.Next
+	}
+
 	for first != nil { // 到达最后一个节点
 		first = first.Next
 		second = second.Next
