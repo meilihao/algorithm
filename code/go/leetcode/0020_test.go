@@ -1,9 +1,12 @@
 // 20. 有效的括号
-package main
+package leetcode
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-func main() {
+func TestIsValid(t *testing.T) {
 	s := "(){}[]"
 
 	fmt.Println(isValid(s))

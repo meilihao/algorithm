@@ -1,15 +1,13 @@
-package main
+package leetcode
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func main() {
+func TestMiddleNode(t *testing.T) {
 	s := "abcd"
-	head := BuildList(s)
+	head := GenerateListNodeByChars(s)
 
 	node := middleNode(head)
 	if node != nil {
@@ -19,26 +17,6 @@ func main() {
 	}
 }
 
-func BuildList(s string) *ListNode {
-	var head, pre, tmp *ListNode
-
-	for _, v := range s {
-		tmp = &ListNode{
-			Val: int(v),
-		}
-
-		if pre != nil {
-			pre.Next = tmp
-			pre = tmp
-		} else {
-			pre = tmp
-			head = tmp
-		}
-	}
-
-	return head
-}
-
 // slow:fast => fast=2*slow-1
 func middleNode(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
@@ -46,7 +24,7 @@ func middleNode(head *ListNode) *ListNode {
 	}
 
 	slow := head
-	fast := head
+	fast := head // 如果 fast 从 head.next 开始，则 slow 指向中点或左中点, 也题目不符合
 
 	for fast != nil && fast.Next != nil { // 确保fast能跳两格
 		fast = fast.Next.Next
