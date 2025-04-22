@@ -5,11 +5,11 @@ import (
 	"testing"
 )
 
-// 期望j>i & answer[j] <= answer[i]
+// 期望min(j)>i & prices[j] <= prices[i]
 func TestFinalPrices(t *testing.T) {
-	s := []int{8, 4, 6, 2, 3}
+	s := []int{8, 4, 6, 2, 3} // [4 2 4 2 3]
 
-	fmt.Println(finalPrices1475(s))
+	fmt.Println(finalPrices1475_2(s))
 }
 
 /*
@@ -49,7 +49,7 @@ func finalPrices1475(prices []int) []int {
 	n := len(prices)
 	ans := make([]int, n)
 
-	st := []int{0} // 最后一个元素没有折扣
+	st := []int{0} // 最后一个元素没有折扣, 处理i=n-1时的情况
 	for i := n - 1; i >= 0; i-- {
 		p := prices[i]
 		//	fmt.Println(p)
@@ -62,4 +62,23 @@ func finalPrices1475(prices []int) []int {
 		//fmt.Println(st)
 	}
 	return ans
+}
+
+// best
+func finalPrices1475_2(prices []int) []int {
+	st := []int{}
+	for i, v := range prices {
+		//fmt.Println("p:", i, st)
+
+		for len(st) > 0 && prices[st[len(st)-1]] >= v { // 处理找到的j
+			//fmt.Println("s:", i, st[len(st)-1])
+
+			prices[st[len(st)-1]] -= v
+			st = st[:len(st)-1]
+		}
+
+		st = append(st, i)
+	}
+
+	return prices
 }

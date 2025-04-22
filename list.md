@@ -20,6 +20,7 @@
 - [红黑树](https://www.tuicool.com/articles/3EFzQnv)
 
 ## 算法题
+- [算法通关手册](https://algo.itcharge.cn/)
 - [leetcode](https://leetcode.com/problemset/algorithms/)
 - [Online Judge](http://acm.sjtu.edu.cn/OnlineJudge/)
 - [doocs/leetcode](https://github.com/doocs/leetcode)
@@ -27,3 +28,4 @@
   - [《程序员面试金典（第 6 版）》系列](https://github.com/doocs/leetcode/blob/main/lcci/README.md)
 - [吴师兄学算法](https://blog.algomooc.com)
 - [LeetCode 热题100](https://developer.aliyun.com/article/1660127)
+- [代码随想录](https://www.programmercarl.com/)

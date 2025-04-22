@@ -8,7 +8,8 @@ import (
 func TestSubsets(t *testing.T) {
 	s := []int{1, 2, 3}
 
-	fmt.Println(subsets(s))
+	//fmt.Println(subsets(s))
+	fmt.Println(subsets3(s))
 }
 
 func TestSubsetsOne(t *testing.T) {
@@ -52,7 +53,7 @@ func subsets2(nums []int) (ans [][]int) {
 	set := []int{}
 	var dfs func(int)
 	dfs = func(cur int) {
-		if cur == len(nums) {
+		if cur == len(nums) { // 当遍历到决策树的叶子节点时，就终止了. 即当前路径搜索到末尾时，递归终止
 			ans = append(ans, append([]int(nil), set...))
 			return
 		}
@@ -64,6 +65,25 @@ func subsets2(nums []int) (ans [][]int) {
 		fmt.Println("b:", cur, set)
 	}
 	dfs(0)
+	return
+}
+
+func subsets3(nums []int) (ans [][]int) {
+	set := []int{} // 存放当前符合条件的结果
+
+	var backtracking func([]int, int)
+	backtracking = func(nums []int, index int) { // 正在考虑可选元素列表中第 index 个元素
+		ans = append(ans, append([]int(nil), set...))
+		if index >= len(nums) {
+			return
+		}
+		for i := index; i < len(nums); i++ { //
+			set = append(set, nums[i]) // 选择元素
+			backtracking(nums, i+1)    // 递归搜索
+			set = set[:len(set)-1]     // 撤销选择
+		}
+	}
+	backtracking(nums, 0)
 	return
 }
 

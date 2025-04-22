@@ -80,6 +80,7 @@ func twoSum22(nums []int, target int) []int {
 	return nil
 }
 
+// best
 // 优化执行时间
 func twoSum221(nums []int, target int) []int {
 	m := make(map[int]int, len(nums))

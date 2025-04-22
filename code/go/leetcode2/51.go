@@ -1,4 +1,5 @@
 // 51. N皇后 : 摆皇后的位置，每行每列以及对角线只能出现 1 个皇后, 输出所有的情况
+// https://algo.itcharge.cn/09.Algorithm-Base/04.Backtracking-Algorithm/01.Backtracking-Algorithm/#_5-2-n-%E7%9A%87%E5%90%8E
 // 思路: 回溯法+剪枝
 // 参考: https://www.jianshu.com/p/0cae26798165
 // 题目要求，在以下地方都没有其他的Queen
