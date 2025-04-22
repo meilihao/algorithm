@@ -2,6 +2,7 @@ package leetcode
 
 import (
 	"fmt"
+	"math/rand"
 	"testing"
 )
 
@@ -10,11 +11,44 @@ func TestSortArray(t *testing.T) {
 
 	fmt.Println(sortArray(nums))
 	fmt.Println(sortArray2(nums))
+	fmt.Println(sortArray3(nums))
 }
 
 func sortArray(nums []int) []int {
 	quickSortAscBase(nums, 0, len(nums)-1)
 	return nums
+}
+
+// 避免退化成n^2
+// 三数取中: 有序/部分有序
+// 随机: 随机数据/重复元素多
+func quickSortMidOfThree(arr []int, start, end int) {
+	mid := start + rand.Intn(end-start+1) // [0,end - start+1), max(mid)=start + end - start = end
+
+	//fmt.Println("b", start, mid, end, arr[start], arr[mid], arr[end])
+
+	/*
+		if (arr[mid] >= arr[start] && arr[mid] <= arr[end]) || (arr[mid] >= arr[end] && arr[mid] <= arr[start]) { // mid在start, end中间
+
+		} else if (arr[start] >= arr[mid] && arr[start] <= arr[end]) || (arr[start] >= arr[end] && arr[start] <= arr[mid]) { // start在mid,end中间
+			mid = start
+		} else {
+			mid = end
+		}
+	*/
+
+	// 作用同上, 可减少比较次数
+	if (arr[mid]-arr[start])*(arr[end]-arr[mid]) >= 0 { // mid在start, end中间
+
+	} else if (arr[start]-arr[mid])*(arr[end]-arr[start]) >= 0 { // start在mid,end中间
+		mid = start
+	} else {
+		mid = end
+	}
+
+	//fmt.Println("a", start, mid, end, arr[start], arr[mid], arr[end])
+
+	arr[end], arr[mid] = arr[mid], arr[end]
 }
 
 // O(nlogn)
@@ -23,6 +57,8 @@ func quickSortAscBase(arr []int, start, end int) {
 	if start >= end {
 		return
 	}
+
+	quickSortMidOfThree(arr, start, end)
 
 	// 选取最后一位当对比数字, 即遍历方向的最后一位
 	pivot := arr[end]
@@ -98,4 +134,36 @@ func inPlaceMerge(arr []int, left, mid, right int) {
 			start2++
 		}
 	}
+}
+
+// 堆排序
+func sortArray3(nums []int) []int {
+	var heapilfy func(root int, end int)
+
+	heapilfy = func(root int, end int) {
+		for {
+			child := root*2 + 1 // 左子节点
+			if child > end {    // 如果没有子节点，终止
+				return
+			}
+			if child < end && nums[child+1] >= nums[child] { // 如果右子节点存在且比左子节点大，选择右子节点
+				child++
+			}
+			if nums[child] < nums[root] { // 如果父节点已经 ≥ 子节点，堆结构已满足，终止
+				return
+			}
+			nums[child], nums[root] = nums[root], nums[child]
+			root = child // 继续向下调整
+		}
+	}
+	length := len(nums) - 1
+	for i := length / 2; i >= 0; i-- {
+		heapilfy(i, length)
+	}
+	for i := length; i >= 0; i-- {
+		nums[0], nums[i] = nums[i], nums[0]
+		length--
+		heapilfy(0, length)
+	}
+	return nums
 }
