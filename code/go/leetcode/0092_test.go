@@ -43,7 +43,7 @@ func reverseBetween(head *ListNode, left, right int) *ListNode {
 	return dummyNode.Next
 }
 
-// left, right是ListNode.Val, 扩展, 非本题解法
+// left, right是ListNode.Val, 且不重复, 扩展, 非本题解法
 /*
 curr：永远指向待反转区域的第一个节点 left；
 next：永远指向 curr 的下一个节点，循环过程中，curr 变化以后 next 会变化；

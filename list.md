@@ -21,6 +21,7 @@
 
 ## 算法题
 - [算法通关手册](https://algo.itcharge.cn/)
+- [algorithm-pattern](https://greyireland.gitbook.io/algorithm-pattern)
 - [leetcode](https://leetcode.com/problemset/algorithms/)
 - [Online Judge](http://acm.sjtu.edu.cn/OnlineJudge/)
 - [doocs/leetcode](https://github.com/doocs/leetcode)
@@ -29,3 +30,6 @@
 - [吴师兄学算法](https://blog.algomooc.com)
 - [LeetCode 热题100](https://developer.aliyun.com/article/1660127)
 - [代码随想录](https://www.programmercarl.com/)
+- [leetcode-master](https://github.com/youngyangyang04/leetcode-master)
+- [CS-Notes](https://github.com/CyC2018/CS-Notes/)
+- [leetcode-use-golang](https://github.com/leekachung/leetcode-use-golang)

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestXxx(t *testing.T) {
+func TestMinStack(t *testing.T) {
 
 }
 
