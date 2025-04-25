@@ -2,14 +2,15 @@
 // 思路:
 // 1. a+b = -c , 两层嵌套 + map => O(n^2)
 // 2. sort + find(夹逼) => O(n^2) 但不需要其他空间, 但sort改了输入
-package main
+package leetcode
 
 import (
 	"fmt"
 	"sort"
+	"testing"
 )
 
-func main() {
+func TestThreeSum(t *testing.T) {
 	//nums := []int{0, 0, 0, 0}
 	nums := []int{-1, 0, 1, 2, -1, -4}
 	//nums := []int{-2, 0, 1, 1, 2}

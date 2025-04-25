@@ -1,20 +1,22 @@
 /*
-	Longest Substring Without Repeating Characters 无重复字符的最长子串
+Longest Substring Without Repeating Characters 无重复字符的最长子串
 
-	思路:
-	假设L[i] = s[start … i]，表示最长的子字符串，其中没有重复的元素，我们以map保存< 字符，索引>；然后访问s[i + 1]：
-		1）如果s[i + 1]没有出现在map中，我们可以将s[i + 1]添加到map中，则有L[i + 1] = s[start … i + 1]；
-		2）如果s[i + 1]存在于map中，并且map中对应的索引是k；则令start = max(start，k)，则L[i + 1] = s[start … i + 1]，记录此时的最大长度；
+思路:
+假设L[i] = s[start … i]，表示最长的子字符串，其中没有重复的元素，我们以map保存< 字符，索引>；然后访问s[i + 1]：
 
-		start = max(start，k)是为了避免start出现回退,比如"abba"的最后的字符"a"
+	1）如果s[i + 1]没有出现在map中，我们可以将s[i + 1]添加到map中，则有L[i + 1] = s[start … i + 1]；
+	2）如果s[i + 1]存在于map中，并且map中对应的索引是k；则令start = max(start，k)，则L[i + 1] = s[start … i + 1]，记录此时的最大长度；
+
+	start = max(start，k)是为了避免start出现回退,比如"abba"的最后的字符"a"
 */
-package main
+package leetcode
 
 import (
 	"fmt"
+	"testing"
 )
 
-func main() {
+func TestLengthOfLongestSubstring(t *testing.T) {
 	Test()
 	Test2()
 	Test3()
