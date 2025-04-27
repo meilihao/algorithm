@@ -23,7 +23,7 @@ func TestMyStack(t *testing.T) {
 // MyStack 是用 Queue 实现的 栈
 type MyStack struct {
 	queue *Queue // 非空队列
-	help  *Queue
+	help  *Queue // help 始终存储栈的顺序
 }
 
 // Constructor Initialize your data structure here.
