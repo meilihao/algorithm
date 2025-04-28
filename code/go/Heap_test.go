@@ -1,4 +1,11 @@
 // https://en.wikipedia.org/wiki/Heap_%28data_structure%29
+
+/*
+如果arr[0]也用于保存data即从0开始, 那么相关变动:
+- 左节点索引: i*2 + 1
+- 右节点索引: i*2 + 2
+- heapify(): `for i := n / - 1; i >= 0; i-- {}`
+*/
 package ago
 
 import (
@@ -49,7 +56,7 @@ func (h *Heap) RemoveMax() {
 	//h.a[h.count] = 0
 	h.count--
 
-	heapify(h.a, h.count, 1)
+	heapify(h.a, 1, h.count)
 }
 
 func (h *Heap) Sort() {
@@ -59,7 +66,7 @@ func (h *Heap) Sort() {
 		h.a[1], h.a[k] = h.a[k], h.a[1] // 将堆顶和末尾元素调换位置，从而将取出堆顶元素和堆化的第一步(将末尾元素放至根结点位置)进行合并
 		k--
 
-		heapify(h.a, k, 1)
+		heapify(h.a, 1, k)
 	}
 }
 
@@ -96,13 +103,15 @@ func buildHead(a []int, n int) {
 	}
 
 	for i := n / 2; i >= 1; i-- { // 顺序是从后往前堆化
-		heapify(a, n, i)
+		heapify(a, i, n)
 	}
 }
 
 // 从上往下堆化
 // 不停与左右子节点的值进行比较，和较大的子节点交换位置，直到无法交换位置
-func heapify(a []int, n, i int) {
+// i: 堆化start
+// n: 堆化end
+func heapify(a []int, i, n int) {
 	var maxPos int
 
 	for {

@@ -17,50 +17,50 @@ import (
 )
 
 func TestLengthOfLongestSubstring(t *testing.T) {
-	Test()
-	Test2()
-	Test3()
-	Test4()
-	Test5()
-	Test6()
+	test()
+	test2()
+	test3()
+	test4()
+	test5()
+	test6()
 }
 
-func Test() {
+func test() {
 	s := "abcabcbb"
 
 	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 3)
 }
 
-func Test2() {
+func test2() {
 	s := "bbbbb"
 
 	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 1)
 }
 
-func Test3() {
+func test3() {
 	s := "pwwkew"
 
 	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 3)
 }
 
-func Test4() {
+func test4() {
 	s := "a"
 
 	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 1)
 }
 
-func Test5() {
+func test5() {
 	s := "aabab"
 
 	n := lengthOfLongestSubstring4(s)
 	fmt.Println(s, n, n == 2)
 }
 
-func Test6() {
+func test6() {
 	s := "abba"
 
 	n := lengthOfLongestSubstring4(s)
