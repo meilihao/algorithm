@@ -12,6 +12,7 @@ func TestSortArray(t *testing.T) {
 	fmt.Println(sortArray(nums))
 	fmt.Println(sortArray2(nums))
 	fmt.Println(sortArray3(nums))
+	fmt.Println(MergeSort(nums))
 }
 
 func sortArray(nums []int) []int {
@@ -134,6 +135,43 @@ func inPlaceMerge(arr []int, left, mid, right int) {
 			start2++
 		}
 	}
+}
+
+func MergeSort(nums []int) []int {
+	return mergeSort2(nums)
+}
+func mergeSort2(nums []int) []int {
+	if len(nums) <= 1 {
+		return nums
+	}
+	// 分治法：divide 分为两段
+	mid := len(nums) / 2
+	left := mergeSort2(nums[:mid])
+	right := mergeSort2(nums[mid:])
+	// 合并两段数据
+	result := merge(left, right)
+	return result
+}
+
+func merge(left, right []int) (result []int) {
+	// 两边数组合并游标
+	l := 0
+	r := 0
+	// 注意不能越界
+	for l < len(left) && r < len(right) {
+		// 谁小合并谁
+		if left[l] > right[r] {
+			result = append(result, right[r])
+			r++
+		} else {
+			result = append(result, left[l])
+			l++
+		}
+	}
+	// 剩余部分合并
+	result = append(result, left[l:]...)
+	result = append(result, right[r:]...)
+	return
 }
 
 // 堆排序

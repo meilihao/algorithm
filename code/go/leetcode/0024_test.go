@@ -52,10 +52,12 @@ func swapPairs_1(head *ListNode) *ListNode {
 	pre := dummyHead
 	var cur, next *ListNode
 
+	// 处理两边再中间
 	for pre.Next != nil && pre.Next.Next != nil { // 有元素需要交换
 		cur = pre.Next
 		next = cur.Next
 
+		// 这里处理先首尾, 或先尾首都可以
 		pre.Next = next
 		cur.Next = next.Next
 		next.Next = cur
