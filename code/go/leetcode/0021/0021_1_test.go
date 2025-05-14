@@ -2,13 +2,14 @@
 // 例：
 // 输入：[1,3,5,7], [2,4,6,8]
 // 输出：[1,2,3,5,6,7,8]
-package main
+package leetcode
 
 import (
 	"fmt"
+	"testing"
 )
 
-func main() {
+func TestMergeArray(t *testing.T) {
 	a := []int{1, 3, 5, 7}
 	b := []int{2, 4, 6, 8}
 
@@ -47,12 +48,4 @@ func mergeArray(a, b []int) []int {
 	}
 
 	return newArray
-}
-
-func min(a, b int) int {
-	if a > b {
-		return b
-	}
-
-	return a
 }

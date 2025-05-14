@@ -1,20 +1,6 @@
 package leetcode
 
-import (
-	"testing"
-)
-
-func TestMergeTwoLists(t *testing.T) {
-	s := "12"
-	s2 := "1345"
-	head := GenerateListNodeByChars(s)
-	head2 := GenerateListNodeByChars(s2)
-
-	mergedHead := mergeTwoLists(head, head2)
-	PrintListNode(mergedHead, true)
-}
-
-func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+func MergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	if l1 == nil {
 		return l2
 	}

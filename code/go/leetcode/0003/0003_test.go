@@ -1,5 +1,5 @@
 /*
-Longest Substring Without Repeating Characters 无重复字符的最长子串
+3.中 无重复字符的最长子串 : Longest Substring Without Repeating Characters
 
 思路:
 假设L[i] = s[start … i]，表示最长的子字符串，其中没有重复的元素，我们以map保存< 字符，索引>；然后访问s[i + 1]：
@@ -141,12 +141,12 @@ func lengthOfLongestSubstring2(s string) int {
 // 最好理解
 // O（n）
 func lengthOfLongestSubstring3(s string) int {
-	max, start := 0, 0 // start为0是指从s[0]开始查找
-	m := make(map[rune]int)
+	max, start := 0, 0      // max: 记录当前找到的最长子串长度; start: 当前无重复子串的起始位置, start为0是指从s[0]开始查找
+	m := make(map[rune]int) // 记录每个字符最后一次出现的位置
 
 	for i, v := range s {
 		// start <= j -> start<j:本次出现的起点比上一次靠后, start==j处理连续且重复的字符     // example: "aab" 或 "aaaa" for start == j
-		if j, ok := m[v]; ok && start <= j {
+		if j, ok := m[v]; ok && start <= j { // j 大于等于 start，说明这个字符在当前子串中重复了
 			start = j + 1 // 从上一次出现重复字符的下一个位置开始重新计算
 		} else {
 			if i-start+1 > max { // for 求max

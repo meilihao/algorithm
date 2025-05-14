@@ -1,6 +1,10 @@
 package leetcode
 
-import "testing"
+import (
+	"testing"
+
+	. "al/leetcode"
+)
 
 func TestMergeKLists(t *testing.T) {
 	MergeKLists(nil)
@@ -21,7 +25,7 @@ func mergeKLists(lists []*ListNode) *ListNode {
 			continue
 		}
 		cur = lists[i]
-		pre = mergeTwoLists(pre, cur)
+		pre = MergeTwoLists(pre, cur)
 	}
 	return pre
 }
@@ -40,5 +44,5 @@ func mergeKLists2(lists []*ListNode) *ListNode {
 		return lists[0]
 	}
 	l, r := mergeKLists2(lists[:n/2]), mergeKLists2(lists[n/2:])
-	return mergeTwoLists(l, r)
+	return MergeTwoLists(l, r)
 }
