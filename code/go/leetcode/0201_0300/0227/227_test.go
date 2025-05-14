@@ -1,0 +1,256 @@
+/*
+227.中 基本计算器 II
+
+给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。
+
+整数除法仅保留整数部分。
+
+你可以假设给定的表达式总是有效的。所有中间结果将在 [-231, 231 - 1] 的范围内。
+
+注意：不允许使用任何将字符串作为数学表达式计算的内置函数，比如 eval() 。
+
+示例 1：
+
+输入：s = "3+2*2"
+输出：7
+示例 2：
+
+输入：s = " 3/2 "
+输出：1
+示例 3：
+
+输入：s = " 3+5 / 2 "
+输出：5
+
+提示：
+
+1 <= s.length <= 3 * 105
+s 由整数和算符 ('+', '-', '*', '/') 组成，中间由一些空格隔开
+s 表示一个 有效表达式
+表达式中的所有整数都是非负整数，且在范围 [0, 231 - 1] 内
+题目数据保证答案是一个 32-bit 整数
+*/
+package main
+
+import (
+	"fmt"
+	"testing"
+)
+
+func TestCalculate2(t *testing.T) {
+	// fmt.Println(calculate2("9/3+5*6/3"))
+	fmt.Println(calculate2("1-2*3-6+1"))
+}
+
+type Stack struct {
+	data  []int
+	index int // 栈顶指针
+	n     int // 容量
+}
+
+func NewStack(n int) *Stack {
+	return &Stack{
+		data:  make([]int, n),
+		index: -1,
+		n:     n,
+	}
+}
+
+func (s *Stack) IsEmpty() bool {
+	return s.index == -1
+}
+
+func (s *Stack) Push(c int) {
+	if s.index == s.n-1 {
+		panic("full stack")
+	}
+
+	s.index++
+	s.data[s.index] = c
+}
+
+func (s *Stack) Pop() int {
+	if s.index == -1 {
+		return 0
+	}
+
+	tmp := s.data[s.index]
+	s.data[s.index] = 0 // 清理旧值
+	s.index--
+
+	return tmp
+}
+
+func (s *Stack) Peek() int {
+	if s.index == -1 {
+		return 0
+	}
+
+	return s.data[s.index]
+}
+
+// 使用数组栈, 容易爆栈
+func calculate(s string) int {
+	numStack := NewStack(16)
+	opStack := NewStack(16)
+	tmp := []byte(s)
+	n := len(tmp)
+
+	var num int
+	for i, v := range tmp {
+		if v == ' ' {
+			continue
+		}
+
+		if v >= '0' && v <= '9' {
+			num = num*10 + int(v-'0') // 碰到多位数字
+		}
+
+		if v == '+' || v == '-' || v == '*' || v == '/' || i == n-1 {
+			numStack.Push(num)
+			num = 0
+
+			switch v {
+			case '*', '/', '-', '+':
+				if calcPriority(int(v), int(opStack.Peek())) {
+					opStack.Push(int(v))
+				} else {
+					numStack.Push(operate(numStack.Pop(), numStack.Pop(), byte(opStack.Pop())))
+					opStack.Push(int(v))
+				}
+			}
+
+			fmt.Println("---num", numStack)
+			fmt.Println("---op", opStack)
+		}
+	}
+
+	for opStack.Peek() != 0 {
+		numStack.Push(operate(numStack.Pop(), numStack.Pop(), byte(opStack.Pop())))
+	}
+
+	return numStack.Pop()
+}
+
+func getPrioriyt(op int) byte {
+	if byte(op) == '*' || byte(op) == '/' {
+		return 1
+	}
+
+	return 0
+}
+
+// true为直接压栈
+func calcPriority(op1, op2 int) bool {
+	if op2 == 0 {
+		return true
+	}
+
+	return getPrioriyt(op1) > getPrioriyt(op2)
+}
+
+// stack是先进后出
+func operate(a, b int, opt byte) int {
+	switch opt {
+	case '+':
+		return b + a
+	case '-':
+		return b - a
+	case '*':
+		return b * a
+	default: // '/'
+		return b / a
+	}
+}
+
+// 基于当前操作符的前一个操作符, 可判断前一个操作符的优先级
+// 加减操作很简单，需要处理的就是乘除的情况
+// 设置一个栈，如果是+就直接入栈，如果是-，就负数入栈
+// 如果是乘或者除，就从栈里取出最后一个元素，运算之后入栈
+// 1-2*3-6+1 => 1+(-2)*3+(-6)+1
+func calculate1(s string) int {
+	var num int
+	n := len(s)
+	st := []int{}
+	var preSign byte = '+' // 当前操作符的前一个操作符/最后一个数字的前操作符
+
+	for i := 0; i < n; i++ {
+		if s[i] >= '0' && s[i] <= '9' {
+			num = num*10 + int(s[i]-'0') // 碰到多位数字
+
+			if i != n-1 { // 假定最后一个是数字,因此s不能以空格结尾
+				continue
+			}
+		}
+
+		if s[i] == ' ' {
+			continue
+		}
+		// 处理操作符
+		switch preSign {
+		case '+':
+		case '-':
+			num = -num
+		case '*':
+			num = st[len(st)-1] * num
+			st = st[:len(st)-1]
+		case '/':
+			num = st[len(st)-1] / num
+			st = st[:len(st)-1]
+		}
+
+		preSign = s[i]
+		st = append(st, num)
+		num = 0
+	}
+
+	for _, v := range st {
+		num += v
+	}
+	return num
+}
+
+// 推荐
+// 基于当前操作符的前一个操作符, 可判断前一个操作符的优先级
+// 由于存在运算优先级，我们采取的措施是使用一个栈保存数字，
+// 如果该数字之前的符号是加或减，那么把当前数字压入栈中，注意如果是减号，则加入当前数字的相反数，因为减法相当于加上一个相反数.
+// 如果之前的符号是乘或除，那么从栈顶取出一个数字和当前数字进行乘或除的运算，再把结果压入栈中，
+// 那么完成一遍遍历后，所有的乘或除都运算完了，再把栈中所有的数字都加起来就是最终结果了
+// 1-2*3-6+1 => 1+(-2)*3+(-6)+1
+func calculate2(s string) int {
+	var num int
+	n := len(s)
+	st := []int{}
+	var preSign byte = '+'
+
+	for i := 0; i < n; i++ {
+		if s[i] >= '0' && s[i] <= '9' {
+			num = num*10 + int(s[i]-'0') // 碰到多位数字
+		}
+
+		if s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/' || i == n-1 { // 最后一个字符是空格也行
+			// 9/3+5*6/3
+			fmt.Println(string(preSign), string(s[i]), num, st)
+			switch preSign {
+			case '+':
+			case '-':
+				num = -num
+			case '*':
+				num = st[len(st)-1] * num
+				st = st[:len(st)-1]
+			case '/':
+				num = st[len(st)-1] / num
+				st = st[:len(st)-1]
+			}
+
+			preSign = s[i]
+			st = append(st, num)
+			num = 0
+		}
+	}
+
+	for _, v := range st {
+		num += v
+	}
+	return num
+}
