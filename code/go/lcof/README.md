@@ -6,6 +6,7 @@ ref:
 > LCR: 之前剑指Offer前缀的题目，由于对方不再和力扣合作了，力扣就把这些题目都改成LCR前缀, 还改编了题目描述, 但本质一样
 
 - 003 数组中重复的数字 = [LCR 120. 寻找文件副本](https://leetcode.cn/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/description/)
+- 003_1 不修改数组找出重复的数字
 - 004 二维数组查找 = leetcode 74. 搜索二维矩阵
 - [005 替换空格](005_test.go)
 - 010 斐波那契数列 = leetcode 509. 斐波那契数

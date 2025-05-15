@@ -16,6 +16,13 @@
 输入：matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13
 输出：false
 */
+
+/*
+--->
+|
+|
+V
+*/
 package leetcode
 
 import (
@@ -35,7 +42,7 @@ func searchMatrix(matrix [][]int, target int) bool {
 	r := len(matrix) - 1       // 行
 
 	for r >= 0 && c < cn {
-		if matrix[r][c] > target {
+		if matrix[r][c] > target { // 从当前行的第一数开始
 			r--
 		} else if matrix[r][c] < target {
 			c++
