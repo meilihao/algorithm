@@ -33,6 +33,7 @@ import (
 
 func TestFibonacci(t *testing.T) {
 	fmt.Println(fib(5))
+	fmt.Println(fib(2))
 	fmt.Println(fib_dp(5))
 }
 

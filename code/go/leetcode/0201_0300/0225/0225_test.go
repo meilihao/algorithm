@@ -61,7 +61,7 @@ func TestMyStack(t *testing.T) {
 // MyStack 是用 Queue 实现的 栈
 type MyStack struct {
 	queue *Queue // 非空队列
-	help  *Queue // help 始终存储栈的顺序
+	help  *Queue // 辅助队列, pop时将queue中除最后一个数据外的其他数据转移到这里, 再将queue的最后一个数据弹出即可, 最后交换queue和help
 }
 
 // Constructor Initialize your data structure here.

@@ -69,7 +69,12 @@ func RebuildTree() {
 
 // pre=[root+left+right]
 // mid=[left+root+right]
+// 前提是每个节点的值都不一样, 否则找根就会出错
 func rebuildTree(pre, mid []int) *TreeNode {
+	if len(pre) != len(mid) || len(pre) == 0 {
+		return nil
+	}
+
 	root := &TreeNode{
 		Val: pre[0],
 	}
