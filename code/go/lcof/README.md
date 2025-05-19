@@ -1,5 +1,8 @@
 # [剑指 Offer（第 2 版）](https://github.com/doocs/leetcode/blob/main/lcof/README.md)
 ref:
+- [《剑指offer v2》官方code: CodingInterviewChinese2](https://github.com/zhedahht/CodingInterviewChinese2/tree/master)
+
+        包含test cases
 - [《剑指offer》第2版对应LeetCode题目](https://tangshusen.me/LeetCode/CodingInterview.html)
 - [《剑指Offer》与Leetcode主站题目链接对应](https://github.com/yanring/jianzhi-Offer-Leetcode)
 
@@ -17,6 +20,9 @@ ref:
 - [010_04 变态跳台阶](010_04_test.go)
 - 011 旋转数组的最小数字 = leetcode 154. 寻找旋转排序数组中的最小值 II
 - 012 矩阵中的路径 = leetcode 79
+- 013 机器人的运动范围 = [leetcode LCR 130. 衣橱整理](https://leetcode.cn/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/description/)
+- 014 减绳子 = leetcode 343. 整数拆分 = [leetcode LCR 131. 砍竹子 I](https://leetcode.cn/problems/jian-sheng-zi-lcof/description/)
+- 015 二进制中1的个数 = leetcode 191
 - 016 数值的整数次方 = leetcode 50. Pow(x, n)
 - [021 调整数组顺序使奇数位于偶数前面](021_test.go)
 - [031 栈的压入、弹出序列](031_test.go)

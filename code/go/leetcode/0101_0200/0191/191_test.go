@@ -31,18 +31,46 @@ import (
 )
 
 func TestHammingWeight(t *testing.T) {
-	var n uint32
-	n = 0b00000000000000000000000000001011
+	var n int32 = 0b00000000000000000000000000001011
 	fmt.Println(hammingWeight(n))
+	//fmt.Println(hammingWeight2(n))
+	fmt.Println(hammingWeight3(n))
 }
 
-func hammingWeight(num uint32) int {
+func hammingWeight(num int32) int {
 	res := 0
 	for num > 0 {
 		res++
 
 		// x = x & (x-1) // 清除序列最后面(即最低位)的1
+		// 6 & (6−1)=4, 110 & 101 = 100 运算结果 4 即为把 6 的二进制位中的最低位的 1 变为 0 之后的结果
 		num &= (num - 1)
+	}
+
+	return res
+}
+
+// hammingWeight2有缺陷, 当num为负数, 移位时补符号1, 导致死循环
+func hammingWeight2(num int32) int {
+	res := 0
+	for num > 0 {
+		if num&1 > 0 {
+			res++
+		}
+		num >>= 1
+	}
+
+	return res
+}
+
+func hammingWeight3(num int32) int {
+	res := 0
+	var flag int32 = 1
+	for flag > 0 {
+		if num&flag > 0 {
+			res++
+		}
+		flag <<= 1
 	}
 
 	return res
