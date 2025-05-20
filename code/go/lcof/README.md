@@ -24,6 +24,14 @@ ref:
 - 014 减绳子 = leetcode 343. 整数拆分 = [leetcode LCR 131. 砍竹子 I](https://leetcode.cn/problems/jian-sheng-zi-lcof/description/)
 - 015 二进制中1的个数 = leetcode 191
 - 016 数值的整数次方 = leetcode 50. Pow(x, n)
-- [021 调整数组顺序使奇数位于偶数前面](021_test.go)
+- 017 打印从1到最大的n位数 = [leetcode LCR 135. 报数](https://leetcode.cn/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/description/)
+- 018 在O(1)时间内删除链表节点
+- 018_2 删除链表中重复的节点 = leetcode 203
+- 019 正则表达式匹配 = leetcode 10
+- 020 表示数值的字符串 = leetcode 65
+- [021 调整数组顺序使奇数位于偶数前面](021_test.go) = leetcode 905
+- 022 链表中倒数第k个节点 = leetcode 19的简版
+- 023 链表中环的入口 = leetcode 142
+- 024 反转链表 = leetcode 206
 - [031 栈的压入、弹出序列](031_test.go)
 - 067 把字符串转换成整数 = leetcode 8. 字符串转换整数 (atoi)

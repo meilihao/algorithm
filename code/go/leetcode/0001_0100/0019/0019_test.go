@@ -65,8 +65,8 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 // best
 // 加哨兵节点
 // 倒数第N个节点 -> 正数第(L-N+1)个节点-> 要删除链表的节点就必须知道该节点的前一个节点: L-N
-// 假设第(L-N)个节点有指针second,那么此时first应该在nil上, 两者相差N+1步. 因此first应先走N+1步, 之后再同步走.
-// 因为是从head开始走, 只需要走N步, 又因为加了哨兵节点, 所以还是要走N+1步.
+// 假设第(L-N)个节点有指针second,那么此时first应该在nil上, 两者相差N+1步(k+最后的nil). 因此first应先走N+1步, 之后再同步走.
+// 起点相同, first先走n+1, 再一起走即可
 func removeNthFromEnd2(head *ListNode, n int) *ListNode {
 	if head == nil || n <= 0 {
 		return head
@@ -78,7 +78,7 @@ func removeNthFromEnd2(head *ListNode, n int) *ListNode {
 
 	first := dummy
 
-	i := n + 1 // 多了dummy
+	i := n + 1
 	for ; i > 0 && first != nil; i-- {
 		first = first.Next
 	}
@@ -114,7 +114,7 @@ func removeNthFromEnd3(head *ListNode, n int) *ListNode {
 	second := dummy
 
 	// 已假定前提n有效
-	for i := 1; i <= n+1; i++ { // 多了dummy
+	for i := 1; i <= n+1; i++ {
 		first = first.Next
 	}
 

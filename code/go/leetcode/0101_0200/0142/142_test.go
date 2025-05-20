@@ -59,7 +59,8 @@ func detectCycle(head *ListNode) *ListNode {
 
 		if fast == slow {
 			// https://github.com/TomorrowWu/golang-algorithms/tree/master/leetcode/0142.linked-list-cycle-ii
-			// X---------Y---------Z
+			// X----<a>----Y---<b>-----Z
+			//             |----<c>----|
 			// x起点，y环的起点，z是相遇点(fast比slow多走一圈)
 			// 链表头是X，环的第一个节点是Y，slow和fast第一次的交点是Z. 各段的长度分别是a,b,c
 			// 相遇时，慢节点走了：a+b; 由于快指针速度是慢指针的2倍，快节点走了：2(a+b); 同时快节点比慢节点刚好多走了一圈环形节点, 快节点走了：(a+b)+(c+b)
