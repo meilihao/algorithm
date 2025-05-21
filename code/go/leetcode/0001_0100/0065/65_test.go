@@ -83,7 +83,7 @@ func Case(name, in string, want bool) {
 	}
 }
 
-// 数字格式可用A[.[B]][e|EC]或者.B[e|EC]表示, 其中A, C都是整数, B是无符号整数
+// 数字格式可用A[.[B]][e|EC]或者.B[e|EC]表示, 其中A, C都是整数, B是无符号整数, `e|E`指数标记
 func IsNum(s string) bool {
 	if s == "" {
 		return false

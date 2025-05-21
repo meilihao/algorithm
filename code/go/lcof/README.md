@@ -33,5 +33,17 @@ ref:
 - 022 链表中倒数第k个节点 = leetcode 19的简版
 - 023 链表中环的入口 = leetcode 142
 - 024 反转链表 = leetcode 206
-- [031 栈的压入、弹出序列](031_test.go)
+- 025 合并两个排序的链表 = leetcode 21
+- 026 树的子结构 = leetcode 572
+- 027 二叉树的镜像 = leetcode 226. 翻转二叉树
+- 028 对称的二叉树 = leetcode 101. 对称二叉树
+- 029 顺时针打印矩阵 = leetcode 54. 螺旋矩阵
+- 030 包含min函数的栈 = leetcode 155. 最小栈
+- 031 栈的压入、弹出序列 = leetcode 946. 验证栈序列
+- 032_1 从上到下打印二叉树 = leetcode 102. 二叉树的层序遍历的简版
+- 032_2 分行从上到下打印二叉树 = leetcode 102. 二叉树的层序遍历
+- 032_3 之字形打印二叉树 = leetcode 103. 二叉树的锯齿形层序遍历
+- 033 二叉搜索树的后序遍历序列 = [LCR 152. 验证二叉搜索树的后序遍历序列](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/description/)
+- 034 二叉树中和为某一值的路径 = leetcode 112. 路径总和
+- 035 复查链表的复制 = leetcode 138. 随机链表的复制
 - 067 把字符串转换成整数 = leetcode 8. 字符串转换整数 (atoi)
