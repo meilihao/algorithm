@@ -46,4 +46,15 @@ ref:
 - 033 二叉搜索树的后序遍历序列 = [LCR 152. 验证二叉搜索树的后序遍历序列](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/description/)
 - 034 二叉树中和为某一值的路径 = leetcode 112. 路径总和
 - 035 复查链表的复制 = leetcode 138. 随机链表的复制
+- 036 二叉搜索树与双向链表 = [牛客网 JZ36 二叉搜索树与双向链表](https://www.nowcoder.com/practice/947f6eb80d944a84850b0538bf0ec3a5?tpId=13&tqId=11179&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+- 037 序列化二叉树 = leetcode 297. 二叉树的序列化与反序列化
+- 038 字符串的排列 = leetcode 46. 全排列
+- 039 数组中出现次数超过一半的数字 =leetcode 169. 多数元素
+- 040 最小的k个数 = 类 leetcode 215. 数组中的第K个最大元素
+- 041 数据流中的中位数 = leetcode 295. 数据流的中位数
+- 042 连续子数组的最大和 = leetcode 53. 最大子数组和
+- 043 1~n整数中1出现的次数 = leetcode 233. 数字 1 的个数
+- 044 数字序列中某一位的数字 = leetcode 400. 第 N 位数字
+- 045 把数组排成最小的数 = 类leetcode 179. 最大数
+- 046 把数字翻译成字符串 = 类leetcode 91. 解码方法
 - 067 把字符串转换成整数 = leetcode 8. 字符串转换整数 (atoi)

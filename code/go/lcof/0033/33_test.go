@@ -23,8 +23,6 @@ package demo
 
 import (
 	"testing"
-
-	. "al/leetcode"
 )
 
 func TestVerifyTreeOrder(t *testing.T) {
