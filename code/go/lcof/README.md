@@ -57,4 +57,32 @@ ref:
 - 044 数字序列中某一位的数字 = leetcode 400. 第 N 位数字
 - 045 把数组排成最小的数 = 类leetcode 179. 最大数
 - 046 把数字翻译成字符串 = 类leetcode 91. 解码方法
+- 047 礼物的最大价值 = [LCR 166. 珠宝的最高价值](https://leetcode.cn/problems/li-wu-de-zui-da-jie-zhi-lcof/description/)
+- 048 最长不包含重复字符串的子字符串 = leetcode 3. 无重复字符的最长子串
+- 049 丑数 = leetcode 264. 丑数 II
+- 050 第一个只出现一次的字符 = leetcode 387. 字符串中的第一个唯一字符
+- 050_1 字符流中第一个只出现一次的字符
+- 051 数组中的逆序对 = 类leetcode 493. 翻转对
+- 052 两个链表的第一个公共节点 = leetcode 160. 相交链表
+- 053_1 数字在排序数组中出现的次数
+- 053_2 0~n-1中缺失的数字
+- 054 二叉搜索树的第k大节点 = leetcode 230. 二叉搜索树中第 K 小的元素
+- 055_1 二叉树的深度 = leetcode 104. 二叉树的最大深度
+- 055_2 平衡二叉树 = leetcode 110. 平衡二叉树
+- 056_1 数组中只出现一次的两个数字 = leetcode 260. 只出现一次的数字 III
+- 056_2 数组中唯一只出现一次的数字 = leetcode 137. 只出现一次的数字 II
+- 057_1 和为s的两个数字 = leetcode 167. 两数之和 II - 输入有序数组
+- 057_2 和为s的连续正数序列 = [LCR 180. 文件组合](https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/description/)
+- 058_1 反转单词顺序 = leetcode 151. 反转字符串中的单词
+- 058_2 左旋转字符串
+- 059_1 滑动窗口的最大值 = leetcode 239. 滑动窗口最大值
+- 059_2 队列的最大值 = [LCR 184. 设计自助结算系统](https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/description/)
+- 060  n个色子的点数 = LCR 185. 统计结果概率
+- 061 扑克牌中的顺子 = [LCR 186. 文物朝代判断](https://leetcode.cn/problems/bu-ke-pai-zhong-de-shun-zi-lcof/description/)
+- 062 圆圈中最后剩下的数字 = [LCR 187. 破冰游戏](https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/description/)
+- 063 股票的最大利润 = leetcode 121. 买卖股票的最佳时机
+- 064 求1+2+...+n
+- 065 不用加减乘除做加法 = [LCR 190. 加密运算](https://leetcode.cn/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/description/)
+- 066 构建乘积组 = [LCR 191. 按规则计算统计结果](https://leetcode.cn/problems/gou-jian-cheng-ji-shu-zu-lcof/description/)
 - 067 把字符串转换成整数 = leetcode 8. 字符串转换整数 (atoi)
+- 068 树中两个节点的最低公共祖先 = leetcode 235. 二叉搜索树的最近公共祖先

@@ -10,5 +10,5 @@ type Biomerger struct {
 }
 
 func (er *Biomerger) InsertBio(key []byte, sector int64, n int64) {
-er.Bpt.
+
 }

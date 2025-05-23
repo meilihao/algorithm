@@ -40,8 +40,10 @@ import (
 
 // 思路: 1. MaxHeap(N*log2(k)); 2. Deque(N)
 func TestMaxSlidingWindow(t *testing.T) {
-	k := 3                         // 1               // 3
-	nums := []int{1, 3, -1, 0, -2} // []int{1, -1} // []int{1, 3, -1, -3, 5, 3, 6, 7}
+	k := 3 // 1               // 3
+	//nums := []int{1, 3, -1, 0, -2}
+	//nums :=  []int{1, -1}
+	nums := []int{1, 3, -1, -3, 5, 3, 6, 7}
 
 	fmt.Println(maxSlidingWindow(nums, k))
 }
@@ -79,6 +81,8 @@ func TestMaxSlidingWindow(t *testing.T) {
 // 	return res
 // }
 
+// 解决滑动窗口最大值问题最有效的方法是使用单调队列.
+// 单调队列是一个双端队列 (deque)，它维护着窗口内可能成为最大值的元素的索引，并且这些索引对应的元素值是单调递减的
 func maxSlidingWindow(nums []int, k int) []int {
 	if !(len(nums) > 0 && k >= 1 && k <= len(nums)) {
 		return nil
@@ -86,22 +90,28 @@ func maxSlidingWindow(nums []int, k int) []int {
 
 	// 再优化, k == 1 return nums
 
+	// window是单调队列: 左, 大 -> 右, 小
 	window := make([]int, 0, k) // 下标对应的值是有序的
 	result := []int{}
 
 	for i, x := range nums {
 		if len(window) > 0 {
+			//fmt.Println("b", x, window)
 			if i-k >= window[0] { // 仅 i>=k时需要清理过期索引, 同时也仅用清理一个即可, 因为i的步长是1
-				window = window[1:]
+				window = window[1:] // 从队首移除过期元素
 			}
 
+			// nums[window[len(window)-1]] <= x： 如果队尾的元素值小于或等于新来的 x，那么队尾的这个元素永远不可能成为最大值, 弹出
 			for len(window) != 0 && nums[window[len(window)-1]] <= x { // 将小于等于当前值的队尾元素依次出队(包含等于是要相应值的索引能更久地保留在window中, 即不过期), 可保证window下标对应的值是有序的
 				window = window[:len(window)-1]
 			}
+
+			//fmt.Println("a", x, window)
 		}
 
 		window = append(window, i)
 
+		// 当 i 达到 k-1 时，表示第一个完整窗口已经形成（索引从 0 到 k-1）, 之后每移动一步，都会形成一个新的完整窗口
 		if i >= k-1 {
 			result = append(result, nums[window[0]])
 		}
