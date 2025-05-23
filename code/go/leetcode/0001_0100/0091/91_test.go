@@ -57,6 +57,17 @@ import (
 func TestNumDecodings(t *testing.T) {
 	res := numDecodings("226")
 	fmt.Println(res)
+
+	res2 := numDecodings("06")
+	fmt.Println(res2)
+}
+
+func TestNumDecodings2(t *testing.T) {
+	res1 := numDecodings2("226")
+	fmt.Println(res1)
+
+	res2 := numDecodings2("06")
+	fmt.Println(res2)
 }
 
 func numDecodings(s string) int {
@@ -71,9 +82,33 @@ func numDecodings(s string) int {
 			f[i] += f[i-1]
 		}
 		// 考虑 s[i-2] 和 s[i-1] 组合解码
+		// s[i-2] != '0'：两位数的编码不能以 0 开头（例如 06 是无效的）
 		if i > 1 && s[i-2] != '0' && ((s[i-2]-'0')*10+(s[i-1]-'0') <= 26) { // 检查 s[i-2] 和 s[i-1] 组成的两位数是否在 1 到 26 之间
 			f[i] += f[i-2]
 		}
 	}
+	fmt.Println(f)
+	return f[n]
+}
+
+// 错误写法
+func numDecodings2(s string) int {
+	n := len(s)
+	f := make([]int, n+1) // 定义 f[i] 表示字符串 s 的前 i 个字符（即 s[0:i]）的解码方法总数
+	f[0] = 1              // f[0] 表示空字符串的解码方法数. 通常将空字符串的解码方法数定义为 1
+	f[1] = 1              // **error: 未考虑"06", 此时没有解法**
+	for i := 2; i <= n; i++ {
+		// handle: 单字符解法 + 双字符解法
+
+		// 考虑 s[i-1] 单独解码
+		if s[i-1] != '0' {
+			f[i] += f[i-1]
+		}
+		// 考虑 s[i-2] 和 s[i-1] 组合解码
+		if i > 1 && s[i-2] != '0' && ((s[i-2]-'0')*10+(s[i-1]-'0') <= 26) { // 检查 s[i-2] 和 s[i-1] 组成的两位数是否在 1 到 26 之间
+			f[i] += f[i-2]
+		}
+	}
+	fmt.Println(f)
 	return f[n]
 }

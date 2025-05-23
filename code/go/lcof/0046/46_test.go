@@ -19,6 +19,8 @@ func TestTranslateNum(t *testing.T) {
 	fmt.Println(res)
 	res2 := translateNum2(12258)
 	fmt.Println(res2)
+	res3 := translateNum2(06)
+	fmt.Println(res3)
 }
 
 func translateNum(num int) int {
