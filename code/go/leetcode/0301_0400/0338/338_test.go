@@ -46,6 +46,7 @@ func countBits(num int) []int {
 
 	for i := 1; i <= num; i++ {
 		//fmt.Println(i & (i - 1))
+		// 对于任意整数 x，令 x=x & (x−1)，该运算将 x 的二进制表示的最后一个 1 变成 0
 		// i 比 i&(i-1) 多一个1, 同时 i > i&(i-1), 因此递推公式成立
 		res[i] = res[i&(i-1)] + 1
 
@@ -85,6 +86,7 @@ func countBits2(num int) []int {
 	return res
 }
 
+// Brian Kernighan 算法
 func hammingWeight(num int) int {
 	if num == 0 {
 		return 0
