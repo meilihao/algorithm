@@ -73,21 +73,22 @@ func swapPairs_1(head *ListNode) *ListNode {
 	var cur, next *ListNode
 
 	// 处理两边再中间
+	// pre->1->2->3 => (pre->[2)->(1]->3)
 	for pre.Next != nil && pre.Next.Next != nil { // 有元素需要交换
 		cur = pre.Next
 		next = cur.Next
 
 		// 这里处理先首尾, 或先尾首都可以
-		pre.Next = next
-		cur.Next = next.Next
-		next.Next = cur
+		pre.Next = next      // pre->2
+		cur.Next = next.Next // 1->3
+		next.Next = cur      // 2->1
 		pre = cur
 	}
 
 	return dummyHead.Next
 }
 
-// pre ->1->2->3 -> pre->2->1->3 : 逆推: 因为要修改1.next, 而原1.next指向2, 所以要暂存2
+// pre->1->2->3 => pre->2->1->3 : 逆推: 因为要修改1.next, 而原1.next指向2, 所以要暂存2
 // 一个临时变量tmp
 func swapPairs3(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {

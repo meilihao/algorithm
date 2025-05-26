@@ -21,3 +21,17 @@ ref:
     - 011 0和1个数相同的子数组 = leetcode 525. 连续数组
     - 012 左右两边子数组的和相等 = leetcode 724. 寻找数组的中心下标
     - 013 二维子矩阵的数字之和 = leetcode 304. 二维区域和检索 - 矩阵不可变
+
+- 3. 字符串
+
+- 4. 链表
+
+    - 021 删除倒数第k个节点 = leetcode 19. 删除链表的倒数第 N 个结点
+    - 022 链表中环的入口节点 = leetcode 142. 环形链表 II
+    - 023 两个链表的第一个重合节点 = leetcode 160. 相交链表
+    - 024 反转链表 = leetcode 206. 反转链表
+    - 025 链表中的两数相加 = leetcode 445. 两数相加 II
+    - 026 重排链表 = leetcode 143. 重排链表
+    - 027 回文链表 = leetcode 234. 回文链表
+    - 028 展平多级双向链表 = leetcode 430. 扁平化多级双向链表
+    - 029 排序的循环链表 = leetcode 708. 循环有序列表的插入 = [LCR 029. 循环有序列表的插入](https://leetcode.cn/problems/4ueAj6/description/?envType=problem-list-v2&envId=h0pfVB6V)

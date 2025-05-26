@@ -118,6 +118,8 @@ func removeNthFromEnd3(head *ListNode, n int) *ListNode {
 		first = first.Next
 	}
 
+	// 如果此时first==nil, 说明k>=len(link)
+
 	for first != nil { // 到达最后一个节点
 		first = first.Next
 		second = second.Next
