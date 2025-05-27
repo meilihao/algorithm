@@ -39,11 +39,11 @@ func isAnagram(s string, t string) bool {
 	mt := make(map[rune]int32)
 
 	for _, v := range s {
-		ms[v] = ms[v] + 1
+		ms[v] += 1
 	}
 
 	for _, v := range t {
-		mt[v] = mt[v] + 1
+		mt[v] += 1
 	}
 
 	if len(ms) != len(mt) {

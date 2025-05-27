@@ -120,6 +120,7 @@ func (this *LRUCache) Put(key int, value int) {
 		n = this.Last.Pre     // 将结尾哨兵的前一个元素即最后一个元素替换成新value
 		delete(this.M, n.Key) // n将被挪用
 
+		// 重用节点
 		n.Key = key
 		n.Val = value
 

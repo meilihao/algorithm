@@ -40,6 +40,8 @@ func TestCheckInclusion(t *testing.T) {
 	}
 }
 
+// 构建len(s1)的窗口并滑动
+// 改进: 可用一个窗口, 遍历s1时对应字符+1, 遍历s2时对应字符-1, 判断窗口内容是否为全0
 func checkInclusion(s1, s2 string) bool {
 	n, m := len(s1), len(s2)
 	if n > m { // 长度检查
@@ -58,6 +60,7 @@ func checkInclusion(s1, s2 string) bool {
 		// 前进一个窗口
 		cnt2[s2[i]-'a']++
 		cnt2[s2[i-n]-'a']--
+
 		if cnt1 == cnt2 {
 			return true
 		}
@@ -66,6 +69,7 @@ func checkInclusion(s1, s2 string) bool {
 }
 
 // best
+// 保证 cnt 的值不为正的情况下，去考察是否存在一个区间，其长度恰好为 n
 func checkInclusion2(s1, s2 string) bool {
 	n, m := len(s1), len(s2)
 	if n > m {
@@ -80,10 +84,16 @@ func checkInclusion2(s1, s2 string) bool {
 		x := ch - 'a'
 		cnt[x]++
 
+		// cnt[x] 表示 x 字符在窗口中的计数与 s1 中的计数的差值:
+		// 如果 cnt[x] == 0：窗口中的 x 字符数量与 s1 中的正好匹配
+		// 如果 cnt[x] > 0：窗口中的 x 字符比 s1 中的多, 通过缩小窗口来使得cnt[x] == 0
+		// 如果 cnt[x] < 0：窗口中的 x 字符比 s1 中的少
+
 		//fmt.Printf("b:  %c, %d-%d, %v\n", ch, left, right, cnt)
 
 		// 非 s1 字符: 会立刻使 left 右移，窗口内始终只保留可能匹配 s1 的字符, 即出现其他字符, 放弃当前窗口. 如果此时[left,right]中包含s1字符, left 右移后其重新重新变成欠账
 		// 对 s1 字符：只有当前窗口内该字符的出现次数超过 s1 中的次数时（即 cnt[x] > 0），才会触发循环
+		// 这个循环确保了窗口中的每个字符的计数都不超过 s1 中的对应计数. 换句话说，窗口中的字符是 s1 字符的“子集”
 		for cnt[x] > 0 { // 如果 cnt[x] > 0，说明当前字符 ch 在 s2 中的出现次数超过了 s1 中的次数，需要移动 left 缩小窗口，直到 cnt[x] 不再大于 0（即去掉多余的字符）
 			cnt[s2[left]-'a']--
 			left++

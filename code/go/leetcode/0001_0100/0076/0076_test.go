@@ -40,8 +40,9 @@ func TestMinWindow(t *testing.T) {
 		s, t, want string
 	}{{"t", "tt", ""}, {"abc", "def", ""}, {"abc", "ac", "abc"}}
 
+	fn := minWindow
 	for _, v := range cs {
-		if g := minWindow(v.s, v.t); g != v.want {
+		if g := fn(v.s, v.t); g != v.want {
 			fmt.Printf("%s %s ->%s != %s\n", v.s, v.t, g, v.want)
 		}
 		fmt.Println("---")
@@ -112,7 +113,7 @@ func minWindow2(s string, t string) string {
 	len := math.MaxInt32 // 最小覆盖子串的长度
 	ansL, ansR := -1, -1 // 最小覆盖子串的start, end, 即目标窗口
 
-	check := func() bool {
+	check := func() bool { // cnt[k] >= ori[k], 表示当前窗口包含了t
 		for k, v := range ori {
 			if cnt[k] < v {
 				return false
@@ -121,10 +122,11 @@ func minWindow2(s string, t string) string {
 		return true
 	}
 	for l, r := 0, 0; r < sLen; r++ {
+		//fmt.Println(r < sLen)
 		if r < sLen && ori[s[r]] > 0 { // s[r]出现在t中, 因此cnt[s[r]]++, 窗口右扩
 			cnt[s[r]]++
 		}
-		for check() && l <= r {
+		for check() && l <= r { // 重复检查直到窗口不符合要求
 			if r-l+1 < len {
 				len = r - l + 1
 				ansL, ansR = l, l+len

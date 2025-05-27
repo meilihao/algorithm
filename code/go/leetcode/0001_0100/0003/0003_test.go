@@ -163,13 +163,13 @@ func lengthOfLongestSubstring3(s string) int {
 // best
 func lengthOfLongestSubstring4(s string) int {
 	max, start := 0, 0 // start为0是指从s[0]开始查找
-	m := [128]int{}
+	m := [128]int{}    // 字符串->最近一次出现的索引. 128, 字符串访问在0~127, 通常使用256(len(byte))
 	for i := range m {
 		m[i] = -1
 	}
 
 	for i, v := range s {
-		// start <= j -> start<j:本次出现的起点比上一次靠后, start==j处理连续且重复的字符     // example: "aab" 或 "aaaa" for start == j
+		// start <= j -> start<j:本次出现的起点比上一次靠后, start==j处理连续且重复的字符     // example: "aab" 或 "aaaa" for start == m[v]
 		if m[v] > -1 && start <= m[v] {
 			start = m[v] + 1 // 从上一次出现重复字符的下一个位置开始重新计算
 		} else {

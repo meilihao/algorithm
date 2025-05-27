@@ -58,10 +58,11 @@ func findAnagrams(s, p string) (ans []int) {
 		ans = append(ans, 0)
 	}
 
-	for i, ch := range s[:sLen-pLen] {
-		// 右移1
+	for i, ch := range s[:sLen-pLen] { // 仅表示移动次数
+		// 右移窗口
 		sCount[ch-'a']--
 		sCount[s[i+pLen]-'a']++
+
 		if sCount == pCount {
 			ans = append(ans, i+1)
 		}
@@ -84,9 +85,11 @@ func findAnagrams2(s, p string) (ans []int) {
 		ans = append(ans, 0)
 	}
 
-	for i := pLen; i < sLen; i++ {
-		sCount[s[i]-'a']++ // 右移1
+	for i := pLen; i < sLen; i++ { // 仅表示移动次数
+		// 右移窗口
+		sCount[s[i]-'a']++
 		sCount[s[i-pLen]-'a']--
+
 		if sCount == pCount {
 			ans = append(ans, i-pLen+1)
 		}
