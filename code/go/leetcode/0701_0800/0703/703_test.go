@@ -48,13 +48,16 @@ kthLargest.add(9); // 返回 8
 -104 <= val <= 104
 最多调用 add 方法 104 次
 */
-package main
+package demo
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 // 思路: minHeap
 // 复杂度: N*log2(k)
-func main() {
+func TestKthLargest(t *testing.T) {
 	k := 3
 	arr := []int{4, 5, 8, 2}
 
