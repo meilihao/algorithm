@@ -35,9 +35,12 @@ insert、search 和 startsWith 调用次数 总计 不超过 3 * 104 次
 */
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
-func main() {
+func TestTrie(t *testing.T) {
 	obj := Constructor()
 	obj.Insert("apple")
 	fmt.Println(obj.Search("apple"))
@@ -47,10 +50,11 @@ func main() {
 	fmt.Println(obj.Search("app"))
 }
 
+// 每个字符是一个节点
 type Trie struct {
 	val      byte
 	children [26]*Trie
-	isEnd    int // 使用int可顺便统计word的频次
+	isEnd    int // 表示该节点是否为字符串的结尾, 使用int可顺便统计word的频次
 }
 
 func Constructor() Trie {
