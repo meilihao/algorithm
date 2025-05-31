@@ -25,6 +25,7 @@ package leetcode
 
 import (
 	"fmt"
+	"math/rand"
 	"testing"
 )
 
@@ -39,6 +40,17 @@ func TestFindKthLargest(t *testing.T) {
 	sa := []int{3, 2, 1, 5, 6, 4}
 	fmt.Println(sa)
 	fmt.Println("result:", findKthLargest(sa, 1))
+	fmt.Println(sa)
+}
+
+func TestFindKthLargest2(t *testing.T) {
+	// a := []int{1, 5, 2, 6, 9, 0, 3, 5, 7, 8}
+
+	// fmt.Println(BubbleSort(a))
+	// fmt.Println(SortAges(a))
+	sa := []int{3, 2, 1, 5, 6, 4}
+	fmt.Println(sa)
+	fmt.Println("result:", findKthLargest2(sa, 1))
 	fmt.Println(sa)
 }
 
@@ -123,3 +135,41 @@ func quickSort2(arr []int, start, end, k int) int {
 }
 
 // todo : 利用最小堆
+
+func findKthLargest2(nums []int, k int) int {
+	target := len(nums) - k
+	start := 0
+	end := len(nums) - 1
+
+	index := partition(nums, start, end)
+	for index != target {
+		if index > target {
+			end = index - 1
+		} else {
+			start = index + 1
+		}
+
+		index = partition(nums, start, end)
+	}
+
+	return nums[index]
+}
+
+// 小->大
+func partition(nums []int, start, end int) int {
+	mid := start + rand.Intn(end-start+1)
+	nums[mid], nums[end] = nums[end], nums[mid]
+
+	small := start - 1 // small = -1, 指向用来放小数的位置
+	for i := start; i < end; i++ {
+		if nums[i] < nums[end] {
+			small++
+			nums[i], nums[small] = nums[small], nums[i]
+		}
+	}
+
+	small++
+	nums[small], nums[end] = nums[end], nums[small]
+
+	return small
+}

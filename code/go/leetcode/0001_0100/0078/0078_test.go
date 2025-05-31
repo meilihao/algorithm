@@ -73,11 +73,11 @@ func subsets2(nums []int) (ans [][]int) {
 			ans = append(ans, append([]int(nil), set...))
 			return
 		}
-		set = append(set, nums[cur])
+		set = append(set, nums[cur]) // 将当前元素加入到子集
 		fmt.Println("a:", cur, set)
-		dfs(cur + 1)
-		set = set[:len(set)-1]
-		dfs(cur + 1)
+		dfs(cur + 1)           // 递归调用：处理下一个元素
+		set = set[:len(set)-1] // 撤销上一步的选择：将当前元素从子集中移除（回溯）
+		dfs(cur + 1)           // 递归调用：处理下一个元素 (在不选择 nums[cur] 的情况下)
 		fmt.Println("b:", cur, set)
 	}
 	dfs(0)

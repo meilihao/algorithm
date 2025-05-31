@@ -38,6 +38,7 @@ func TestCombine(t *testing.T) {
 	fmt.Println(combine(n, k))
 }
 
+// 非递归（字典序法）实现组合型枚举
 func combine(n int, k int) (ans [][]int) {
 	// 初始化
 	// 将 temp 中 [0, k - 1] 每个位置 i 设置为 i + 1，即 [0, k - 1] 存 [1, k]
@@ -64,5 +65,32 @@ func combine(n int, k int) (ans [][]int) {
 		// j 是第一个 temp[j] + 1 != temp[j + 1] 的位置
 		temp[j]++
 	}
+	return
+}
+
+// 递归实现组合型枚举
+func combine2(n int, k int) (ans [][]int) {
+	temp := []int{}
+	var dfs func(int)
+	dfs = func(cur int) {
+		// 剪枝：temp 长度加上区间 [cur, n] 的长度小于 k，不可能构造出长度为 k 的 temp
+		if len(temp)+(n-cur+1) < k {
+			return
+		}
+		// 记录合法的答案
+		if len(temp) == k {
+			comb := make([]int, k)
+			copy(comb, temp)
+			ans = append(ans, comb)
+			return
+		}
+		// 考虑选择当前位置
+		temp = append(temp, cur)
+		dfs(cur + 1)
+		temp = temp[:len(temp)-1]
+		// 考虑不选择当前位置
+		dfs(cur + 1)
+	}
+	dfs(1) // 数字是从1开始的
 	return
 }
