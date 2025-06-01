@@ -25,3 +25,10 @@
 - [数据结构演示平台](http://ds.fmdca380.com/index.html)
 - [VisuAlgo - 数据结构和算法动态可视化](https://visualgo.net/zh)
 - [Data Structure Visualizations](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
+
+## 理解算法的工具
+- ai(按优劣排名):
+
+    1. gemini
+    2. chatgpt
+    3. deepseek

@@ -45,6 +45,7 @@ func TestMinCostClimbingStairs(t *testing.T) {
 	fmt.Println(minCostClimbingStairs(s))
 }
 
+// dp[i]=min(dp[i−1]+cost[i−1],dp[i−2]+cost[i−2])
 func minCostClimbingStairs(cost []int) int {
 	n := len(cost)
 	dp := make([]int, n+1) // 创建长度为 n+1 的数组 dp，其中 dp[i] 表示达到下标 i 的最小花费

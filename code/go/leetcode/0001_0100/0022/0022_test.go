@@ -24,6 +24,7 @@ func TestGenerateParenthesis(t *testing.T) {
 	n := 3
 
 	fmt.Println(generateParenthesis(n))
+	fmt.Println(generateParenthesis2(n))
 }
 
 func generateParenthesis(n int) []string {
@@ -49,5 +50,27 @@ func gen(left, right, n int, result string, list *[]string) {
 
 	if left > right && right < n { // 加右括号的条件
 		gen(left, right+1, n, result+")", list)
+	}
+}
+
+func generateParenthesis2(n int) []string {
+	list := []string{}
+
+	helper(n, n, "", &list)
+
+	return list
+}
+
+func helper(left, right int, result string, list *[]string) {
+	if left == 0 && right == 0 {
+		*list = append(*list, result)
+	}
+
+	if left > 0 {
+		helper(left-1, right, result+"(", list)
+	}
+
+	if left < right {
+		helper(left, right-1, result+")", list)
 	}
 }
