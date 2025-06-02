@@ -57,7 +57,7 @@ func (rs *RandomizedSet) Insert(val int) bool {
 	if _, ok := rs.indices[val]; ok {
 		return false
 	}
-	rs.indices[val] = len(rs.nums)
+	rs.indices[val] = len(rs.nums) // val:所在idx
 	rs.nums = append(rs.nums, val)
 	return true
 }

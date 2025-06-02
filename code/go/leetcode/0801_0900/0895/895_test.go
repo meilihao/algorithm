@@ -43,8 +43,8 @@ import (
 )
 
 type FreqStack struct {
-	freq    map[int]int   // 统计数字出现的次数
-	group   map[int][]int // 频率(次数)到具有该频率的元素的映射. 在具有相同的频率的元素中，靠近栈顶的元素总是相对更新一些, 即尾部的元素最新
+	freq    map[int]int   // val->数字出现的次数
+	group   map[int][]int // 频率(次数)->具有该频率的元素的映射. 在具有相同的频率的元素中，靠近栈顶的元素总是相对更新一些, 即尾部的元素最新
 	maxfreq int           // 栈中任意元素的当前最大频率
 }
 
@@ -81,6 +81,7 @@ func (this *FreqStack) Pop() int {
 	ng := this.group[this.maxfreq]
 	l := len(ng) - 1
 
+	// 取出当前频率最大且最新的数
 	target := ng[l]
 	this.group[this.maxfreq] = ng[:l]
 

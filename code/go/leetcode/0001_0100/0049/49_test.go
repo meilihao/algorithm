@@ -36,6 +36,7 @@ func TestGroupAnagrams(t *testing.T) {
 
 }
 
+// 将字母异位词中的字符串排序后作为key, 则字母异位词的key相同
 func groupAnagrams(strs []string) [][]string {
 	mp := map[string][]string{}
 	for _, str := range strs {
