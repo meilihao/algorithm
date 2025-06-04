@@ -64,6 +64,7 @@ func TestMinimumTotal(t *testing.T) {
 	fmt.Println(minimumTotalR(triangle))
 }
 
+// **对其子数组再看比较直观**
 // 原始递推方程(从下往上): dp[i][j] = min(dp[i+1,j],dp[i+1,j+1]) + triangle[i][j]
 // 选择从下往上的原因: 从下往上是分散的; 而从下往上是合并的过程, 符合递推模式
 func minimumTotal(triangle [][]int) int {
@@ -75,10 +76,27 @@ func minimumTotal(triangle [][]int) int {
 		return triangle[0][0]
 	}
 
+	// dp[j] 表示：从三角形最底层 triangle[n-1] 的 j 列开始，到达 triangle[n-1] 的 j 列的最小路径和
 	dp := triangle[n-1] // 取最下面一行作为起始值
 	for i := n - 2; i >= 0; i-- {
 		for j := 0; j < len(triangle[i]); j++ {
-			dp[j] = min(dp[j], dp[j+1]) + triangle[i][j]
+			/*
+							dp[j] 的更新逻辑：
+							当前考虑的节点是 triangle[i][j]。
+							从这个节点到三角形底部，有两条可能的路径：
+							1. 移动到下一行的 dp[j] (对应 triangle[i+1][j])
+							2. 移动到下一行的 dp[j+1] (对应 triangle[i+1][j+1])
+
+				            dp[j] 和 dp[j+1] 在当前循环迭代之前，已经存储了从下一行对应位置到最底部的最小路径和。
+				            例如，当 i 是 n-2 时：
+				            dp[j] 存储的是 triangle[n-1][j] 的值。
+				            dp[j+1] 存储的是 triangle[n-1][j+1] 的值。
+
+				            所以，min(dp[j], dp[j+1]) 找到了从下一行两个相邻点中选择一个，并到最底部的最小和。
+				            再加上当前节点 triangle[i][j] 的值，就是从 triangle[i][j] 到最底部的最小路径和。
+				            dp[j] = min(dp[j], dp[j+1]) + triangle[i][j]
+			*/
+			dp[j] = min(dp[j], dp[j+1]) + triangle[i][j] // triangle[i][j] + min(triangle[i+1][j], triangle[i+1][j+1])
 		}
 
 		fmt.Println(dp)

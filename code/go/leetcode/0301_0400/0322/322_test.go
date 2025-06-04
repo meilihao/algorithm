@@ -55,30 +55,60 @@ func TestCoinChange(t *testing.T) {
 	}
 
 	for _, v := range cases {
-		if coinChange2(v.coins, v.amount) != v.want {
+		if coinChange(v.coins, v.amount) != v.want {
 			fmt.Println("---", v)
+		} else {
+			fmt.Println("--- ok")
 		}
 	}
 }
 
 func coinChange(coins []int, amount int) int {
 	dp := make([]int, amount+1) // dp[i] 表示凑齐钱数 i 需要的最少硬币数
-	// dp[0] = 0
+	// dp[0] = 0 // 凑齐金额 0 需要 0 个硬币（空集）
 
 	for i := 1; i <= amount; i++ {
-		dp[i] = -1
+		dp[i] = -1 // 将 dp[i] 设置为 -1，表示金额 i 暂时不可达
 
 		for j := 0; j < len(coins); j++ {
-			// i>=coins[j]: i应该不小于最小硬币
-			// dp[i-coins[j]] != -1:
+			// 判断是否可以使用当前硬币 coin 来凑齐金额 i：
+			// 1. `i >= coin`：当前金额 `i` 必须大于或等于当前硬币面额 `coin`，才能使用这枚硬币。
+			// 2. `dp[i-coin] != -1`：表示金额 `i-coin` 是可以被凑齐的。如果 `i-coin` 都不可以凑齐，
+			//    那么加上当前硬币 `coin` 也无法凑齐 `i`。
 			if i >= coins[j] && dp[i-coins[j]] != -1 {
 				if dp[i] == -1 || dp[i] > dp[i-coins[j]]+1 {
+					//fmt.Println("-b:", dp[i] > dp[i-coins[j]]+1, i, coins[j], dp[i-coins[j]])
 					dp[i] = dp[i-coins[j]] + 1
+					//fmt.Println("-a:", dp[i])
 				}
 			}
 		}
 	}
 
+	return dp[amount]
+}
+
+// dp[i] 表示交换到i的最小次数 不一定有1 但是可以用amount+1初始化
+// 遍历coins数组, dp[i] = min(dp[i], dp[i-coin]+1)
+// 官方
+// best: 理解
+func coinChange3(coins []int, amount int) int {
+	dp := make([]int, amount+1)
+	for i := range dp {
+		dp[i] = amount + 1 //  amount + 1 : 不可能达到的方案
+	}
+	dp[0] = 0
+	for i := 1; i <= amount; i++ {
+		for _, coin := range coins {
+			if i-coin >= 0 {
+				//fmt.Println("--:", i, coin, dp[i], dp[i-coin]+1)
+				dp[i] = min(dp[i], dp[i-coin]+1)
+			}
+		}
+	}
+	if dp[amount] == amount+1 {
+		return -1
+	}
 	return dp[amount]
 }
 
